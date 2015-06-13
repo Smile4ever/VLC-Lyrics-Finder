@@ -173,5 +173,6 @@ function trim(str)
     return string.gsub(str, "^%s*(.-)%s*$", "%1")
 end
 
-
-
+-- Solve crash problem #14786: https://trac.videolan.org/vlc/ticket/14786
+function meta_changed()
+end
