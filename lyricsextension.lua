@@ -61,10 +61,12 @@ function show_dialog()
 	dlg:add_label("Artist:", 1, 2, 1, 1)
 	artist = dlg:add_text_input(get_artist(), 2, 2, 3, 1)
 
-	dlg:add_button("Get Lyrics", click_lyrics_button, 2, 3, 2, 1)
+	dlg:add_button("Get Lyrics", update_lyrics, 2, 3, 2, 1)
 	dlg:add_button("Update", update_metas, 1, 3, 1, 1)
 	dlg:add_button("Close", close, 4, 3, 1, 1)
 	lyric = dlg:add_html("", 1,4,4,4)
+	
+	update_lyrics()
 	return true
 end
 
@@ -98,6 +100,10 @@ function get_lyrics(title_x, artist_x)
 
 	title_x = title_x:gsub('[^%w_]','')
 	artist_x = artist_x:gsub('[^%w_]','')
+	
+	if title_x == "" or artist_x == "" then
+		return ""
+	end
 
 	local url = "http://www.lyricsmode.com/lyrics/"..artist_x:sub(1,1).."/"..artist_x.."/"..title_x..".html"
 
@@ -119,7 +125,7 @@ function get_lyrics(title_x, artist_x)
 	return data:sub(a+1,b-1)
 end
 
-function click_lyrics_button()
+function update_lyrics()
 	lyric:set_text("LOADING...")
 	dlg:update()
 
