@@ -64,8 +64,8 @@ function show_dialog()
 	dlg:add_button("Get Lyrics", update_lyrics, 2, 3, 2, 1)
 	dlg:add_button("Update", update_metas, 1, 3, 1, 1)
 	dlg:add_button("Close", close, 4, 3, 1, 1)
-	lyric = dlg:add_html("", 1,4,4,4)
-	
+	lyric = dlg:add_html("", 1, 4, 4, 4)
+
 	update_lyrics()
 	return true
 end
@@ -82,8 +82,6 @@ end
 function update_metas()
 	title:set_text(get_title())
 	artist:set_text(get_artist())
-
-	dlg:update()
 	return true
 end
 -- end of VLC functions
@@ -102,6 +100,7 @@ function get_lyrics(title_x, artist_x)
 	artist_x = artist_x:gsub('[^%w_]','')
 	
 	if title_x == "" or artist_x == "" then
+		lyric:set_text("<i>INCORRECT ARTIST OR TITLE<i>")
 		return ""
 	end
 
@@ -113,6 +112,7 @@ function get_lyrics(title_x, artist_x)
 	local s = vlc.stream(url)
 
 	if not s then
+		append_text(lyric, "<br/><br/><i>URL NOT FOUND</i>")
 		return ""
 	end
 
@@ -126,21 +126,15 @@ function get_lyrics(title_x, artist_x)
 end
 
 function update_lyrics()
-	lyric:set_text("LOADING...")
-	dlg:update()
-
 	local songtitle = title:get_text()
 	local songartist = artist:get_text()
 
 	local lyric_string = get_lyrics(songtitle, songartist)
 	if lyric_string=="" or lyric_string==nil then
-		lyric:set_text("<i>URL NOT FOUND</i>")
-		dlg:update()
 		return false
 	end
 
 	lyric:set_text(lyric_string)
-	dlg:update()
 	return true
 end
 
@@ -181,4 +175,8 @@ end
 
 -- Solve crash problem #14786: https://trac.videolan.org/vlc/ticket/14786
 function meta_changed()
+end
+
+function append_text(widget, text)
+	return widget:set_text(widget:get_text()..text)
 end
