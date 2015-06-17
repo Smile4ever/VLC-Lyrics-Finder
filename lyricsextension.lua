@@ -61,8 +61,8 @@ function show_dialog()
 	dlg:add_label("Artist:", 1, 2, 1, 1)
 	artist = dlg:add_text_input(get_artist(), 2, 2, 3, 1)
 
-	dlg:add_button("Update", update_metas, 1, 3, 1, 1)
 	dlg:add_button("Get Lyrics", click_lyrics_button, 2, 3, 2, 1)
+	dlg:add_button("Update", update_metas, 1, 3, 1, 1)
 	dlg:add_button("Close", close, 4, 3, 1, 1)
 	lyric = dlg:add_html("", 1,4,4,4)
 	return true
