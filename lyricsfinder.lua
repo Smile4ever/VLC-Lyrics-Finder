@@ -1082,6 +1082,7 @@ function get_artist()
 		filename = string.gsub(filename,"%%2C", ",") --replace comma
 		filename = string.gsub(filename,"%%26", "and") --replace & by and
 		filename = string.gsub(filename,"%%27", "") --replace single quote by nothing
+		filename = string.gsub(filename,"%%21","!") --replace exclamation mark by exclamation mark :)
 		filename = string.gsub(filename,"%s_%s", " and ") --replace underscore with spaces by and
 		filename = string.gsub(filename,"%..*","") --remove extension
 
