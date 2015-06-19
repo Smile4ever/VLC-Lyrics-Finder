@@ -487,7 +487,7 @@ end
 function download_update()
 	local installed_version = descriptor()["version"]
 	
-	open_url("http://hugsmile.eu")
+	open_url("https://github.com/Smile4ever/VLC-Lyrics-Finder")
 end
 
 function get_lyrics(title_x, artist_x)
