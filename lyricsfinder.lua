@@ -84,7 +84,7 @@ translation = {
 	message_notfound = 'Lyrics not found.'
 }
 
-local languages = {
+languages = {
 	{'alb', 'Albanian'},
 	{'ara', 'Arabic'},
 	{'arm', 'Armenian'},
@@ -332,6 +332,8 @@ function reset_variables()
 	artist = nil
 	lyric = nil
 	source_label = nil
+	languages = nil
+	translation = nil
 end
 
 -- Update input fields and lyrics (refresh functionality)
@@ -1084,7 +1086,7 @@ function get_artist()
 		filename = string.gsub(filename,"%%27", "") --replace single quote by nothing
 		filename = string.gsub(filename,"%%21","!") --replace exclamation mark by exclamation mark :)
 		filename = string.gsub(filename,"%s_%s", " and ") --replace underscore with spaces by and
-		filename = string.gsub(filename,"%..*","") --remove extension
+		filename = string.gsub(filename, "/^(.+)(\\.[^ .]+)?$/", "") --remove extension
 
 		hyphenpos = filename:find("-")
 		spacepos = filename:find("%s")
@@ -1093,7 +1095,7 @@ function get_artist()
 		--return "notok"
 		--spacepos = 5
 	end
-		
+
 	if hyphenpos == nil then
 		return "" --invalid things
 	end
