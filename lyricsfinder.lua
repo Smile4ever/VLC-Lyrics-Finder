@@ -458,7 +458,7 @@ function getenv_lang()
 		end
 	else -- Windows
 		local lang_w = string.match(os.setlocale("", "collate"), "^[^_]+")
-		for i, v in ipairs(openSub.conf.languages) do
+		for i, v in ipairs(languages) do
 		  if v[2] == lang_w then
 			return v[1]
 		  end
