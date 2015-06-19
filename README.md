@@ -1,7 +1,7 @@
 VLC Lyrics Finder
 ==============
 
-VLC media player extension
+VLC media player lyrics extension. Supports MetroLyrics, Sonic Hits, Golyr.de, AZ Lyrics, Lyrics.com, Lyricsmania.com and Lyrics Mode.
 
 Installation
 -------------
