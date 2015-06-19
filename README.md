@@ -47,7 +47,7 @@ Translation
 -------
 If you would like to make a translation of Lyrics Finder to your own language, follow these steps:
 
-1. [Make an account at Transifex](https://www.transifex.com)
+1. [Make an account at Transifex](https://www.transifex.com/signup/)
 2. [Start translating](https://www.transifex.com/projects/p/vlc-lyrics-finder/translate/)
 
 If the language you want to translate is not present, [make an issue](https://github.com/alexxxnf/VLC-Lyrics-Finder/issues) asking to add the desired language.
