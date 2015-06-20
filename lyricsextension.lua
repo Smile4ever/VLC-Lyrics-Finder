@@ -12,7 +12,7 @@ function descriptor()
 	return {
 				title = "Lyrics Finder";
 				version = "0.2";
-				author = "rsyh93, alexxnf";
+				author = "rsyh93, alexxxnf";
 				url = 'https://github.com/alexxxnf/VLC-Lyrics-Finder';
 				description = "<center><b>Lyrics Finder</b></center>"
 						   .. "<br /><b>Gets the lyrics from lyricsmode.com</b>"
