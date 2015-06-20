@@ -1,0 +1,18 @@
+<dialogtitle_normal>Текст песни</dialogtitle_normal>
+<dialogtitle_notfound>Текст не найден</dialogtitle_notfound>
+<dialogtitle_lyricsof>Текст песни</dialogtitle_lyricsof>
+<dialogtitle_performedby>-</dialogtitle_lyricsof>
+<button_getlyrics>Загрузить</button_getlyrics>
+<button_refresh>Обновить</button_refresh>
+<button_switch>Поменять местами</button_switch>
+<button_close>Закрыть</button_close>
+<button_google>Искать в Google</button_google>
+<button_update>Обновить плагин</button_update>
+<label_title>Название:</label_title>
+<label_artist>Исполнитель:</label_artist>
+<label_source>Источник:</label_source>
+<message_newsong>Запущена новая песня. Чтобы скачать для неё текст, нажмите Загрузить.</message_newsong>
+<message_loading>Загрузка..</message_loading>
+<message_incorrect>Некорректное название или исполнитель.</message_incorrect>
+<message_notfound>Текст песни не найден.</message_notfound>
+<!-- Translated by Aleksey Maydokin -->

@@ -1,0 +1,17 @@
+<dialogtitle_normal>		</dialogtitle_normal>
+<dialogtitle_notfound>		</dialogtitle_notfound>
+<dialogtitle_lyricsof>		</dialogtitle_lyricsof>
+<dialogtitle_performedby>		</dialogtitle_lyricsof>
+<button_getlyrics>		</button_getlyrics>
+<button_refresh>		</button_refresh>
+<button_switch>		</button_switch>
+<button_close>		</button_close>
+<button_google>		</button_google>
+<button_update>		</button_update>
+<label_title>		</label_title>
+<label_artist>		</label_artist>
+<label_source>		</label_source>
+<message_newsong>		</message_newsong>
+<message_loading>		</message_loading>
+<message_incorrect>		</message_incorrect>
+<message_notfound>		</message_notfound>
