@@ -5,7 +5,7 @@ VLC media player lyrics extension. Supports MetroLyrics, Sonic Hits, Golyr.de, A
 
 Installation
 -------------
-1. Download [lyricsfinder.lua](https://raw.githubusercontent.com/alexxxnf/VLC-Lyrics-Finder/master/lyricsfinder.lua) (Use **File -> Save as** if necessary).
+1. Download [lyricsfinder.lua](https://raw.githubusercontent.com/Smile4ever/VLC-Lyrics-Finder/master/lyricsfinder.lua) (Use **File -> Save as** if necessary).
 2. Move the file to lyricsfinder.lua to **lua/extensions** inside your VLC folder. For example, **C:\Program Files\VideoLAN\VLC\lua\extensions\lyricsfinder.lua**
 3. To install the language files, put them inside your VLC folder in the subdirectory **lua/extensions/lyricsfinder/locale**. For example, **C:\Program Files\VideoLAN\VLC\lua\extensions\lyricsfinder\locale**
 3. Restart VLC or open **Tools -> Plugins and extensions** and hit **reload extensions**.
@@ -36,10 +36,12 @@ Since version 0.3.0, this script supports intelligent guessing. This means that 
 * Artist - Title (year of release) -> Steve Allen - Letter From My Heart (1984)
 * Artist - Title -> Steve Allen - Letter From My Heart
 * Artist - Title (anything): the information between parenthesis is discarded
+* Artist-Title: also works without spaces before and after the hyphen
+
 
 Wrong file names:
 * Title - Artist
-* File names that contain two hyphens, like "Artist - Title - Album name"
+* File names that contain two hyphens, like "Artist - Title - Album name". There is one exception: artist names that contain a hyphen are valid. For example "A-ha - Stay On These Roads".
 
 If your files contain metadata, Lyrics Finder uses that information. Otherwise, it uses intelligent guessing.
 
@@ -48,6 +50,6 @@ Translation
 If you would like to make a translation of Lyrics Finder to your own language, follow these steps:
 
 1. [Make an account at Transifex](https://www.transifex.com/signup/)
-2. [Start translating](https://www.transifex.com/projects/p/vlc-lyrics-finder/translate/)
+2. [Start translating](https://www.transifex.com/projects/p/vlc-lyrics-finder/)
 
 If the language you want to translate is not present, [make an issue](https://github.com/alexxxnf/VLC-Lyrics-Finder/issues) asking to add the desired language.
