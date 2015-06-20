@@ -225,8 +225,8 @@ function descriptor()
 	return {
 				title = "Lyrics Finder";
 				version = "0.3.0";
-				author = "rsyh93, alexxnf, Smile4ever";
-				url = 'https://github.com/alexxxnf/VLC-Lyrics-Finder';
+				author = "rsyh93, alexxxnf, Smile4ever";
+				url = 'https://github.com/Smile4ever/VLC-Lyrics-Finder';
 				description = "<center><b>Lyrics Finder</b></center>"
 						   .. "<br /><b>Gets the lyrics for your favorite songs</b>"
 						   .. "<br /><b>(Based on the script made by Jean-Philippe Andre)</b>"
