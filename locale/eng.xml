@@ -1,0 +1,17 @@
+<dialogtitle_normal>Lyrics</dialogtitle_normal>
+<dialogtitle_notfound>Not Found</dialogtitle_notfound>
+<dialogtitle_lyricsof>Lyrics of</dialogtitle_lyricsof>
+<dialogtitle_performedby>by</dialogtitle_lyricsof>
+<button_getlyrics>Get Lyrics</button_getlyrics>
+<button_refresh>Refresh</button_refresh>
+<button_switch>Switch</button_switch>
+<button_close>Close</button_close>
+<button_google>Search with Google</button_google>
+<button_update>Get updates</button_update>
+<label_title>Title:</label_title>
+<label_artist>Artist:</label_artist>
+<label_source>Source:</label_source>
+<message_newsong>New song loaded. To get the lyrics, click Get Lyrics.</message_newsong>
+<message_loading>Loading..</message_loading>
+<message_incorrect>Incorrect artist or title.</message_incorrect>
+<message_notfound>Lyrics not found.</message_notfound>

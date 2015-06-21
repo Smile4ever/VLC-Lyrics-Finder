@@ -1,0 +1,18 @@
+<dialogtitle_normal>Songtekst</dialogtitle_normal>
+<dialogtitle_notfound>Niet gevonden</dialogtitle_notfound>
+<dialogtitle_lyricsof>Songtekst van</dialogtitle_lyricsof>
+<dialogtitle_performedby>door</dialogtitle_lyricsof>
+<button_getlyrics>Songtekst opzoeken</button_getlyrics>
+<button_refresh>Verversen</button_refresh>
+<button_switch>Omwisselen</button_switch>
+<button_close>Sluiten</button_close>
+<button_google>Zoeken met Google</button_google>
+<button_update>Naar updates zoeken</button_update>
+<label_title>Titel:</label_title>
+<label_artist>Artiest:</label_artist>
+<label_source>Bron:</label_source>
+<message_newsong>Nieuw liedje geladen. Om de lyrics op te halen, klik op Lyrics opzoeken.</message_newsong>
+<message_loading>Laden..</message_loading>
+<message_incorrect>Incorrecte artiest of titel.</message_incorrect>
+<message_notfound>Songtekst niet gevonden.</message_notfound>
+<!-- Translated by Geoffrey De Belie -->
