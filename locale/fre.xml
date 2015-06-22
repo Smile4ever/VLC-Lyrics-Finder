@@ -1,0 +1,18 @@
+<dialogtitle_normal>Paroles</dialogtitle_normal>
+<dialogtitle_notfound>Non trouvé</dialogtitle_notfound>
+<dialogtitle_lyricsof>Paroles de</dialogtitle_lyricsof>
+<dialogtitle_performedby>par</dialogtitle_lyricsof>
+<button_getlyrics>Rechercher paroles</button_getlyrics>
+<button_refresh>Actualiser</button_refresh>
+<button_switch>Changer</button_switch>
+<button_close>Fermer</button_close>
+<button_google>Recherchez sur Google</button_google>
+<button_update>Rechercher actualisations</button_update>
+<label_title>Titre:</label_title>
+<label_artist>Artiste:</label_artist>
+<label_source>Source:</label_source>
+<message_newsong>Nouveau chanson chargé. Pour récolter les paroles, cliquez sur Rechercher paroles.</message_newsong>
+<message_loading>Charger..</message_loading>
+<message_incorrect>Artiste ou titre incorrect.</message_incorrect>
+<message_notfound>Paroles non trouvés.</message_notfound>
+Translated by Jennifer De Belie

@@ -1,0 +1,18 @@
+<dialogtitle_normal>Letras</dialogtitle_normal>
+<dialogtitle_notfound>No encontrado</dialogtitle_notfound>
+<dialogtitle_lyricsof>Letras de</dialogtitle_lyricsof>
+<dialogtitle_performedby>por</dialogtitle_lyricsof>
+<button_getlyrics>Buscar letras</button_getlyrics>
+<button_refresh>Actualizar</button_refresh>
+<button_switch>Cambiar</button_switch>
+<button_close>Cerrar</button_close>
+<button_google>Buscar en Google</button_google>
+<button_update>Buscar actualizaciones</button_update>
+<label_title>Título:</label_title>
+<label_artist>Artista:</label_artist>
+<label_source>Fuente:</label_source>
+<message_newsong>Nueva canción cargada. Para recoger la letra, haga clic en Buscar letras.</message_newsong>
+<message_loading>Cargar..</message_loading>
+<message_incorrect>Artista o título incorrecto.</message_incorrect>
+<message_notfound>Letras no encontrada.</message_notfound>
+Translated by Jennifer De Belie
