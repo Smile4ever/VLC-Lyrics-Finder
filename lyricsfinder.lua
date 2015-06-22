@@ -909,10 +909,32 @@ function input_changed()
 	-- update_metas() --doesn't work (freezes)
 	-- requires input-listener
 	collectgarbage()
-	title:set_text(get_title())
-	artist:set_text(get_artist())
-	lyric:set_text(translation["message_newsong"])
-	dlg:set_title(translation["dialogtitle_normal"])
+	local title_prev = title:get_text()
+	local artist_prev = artist:get_text()
+	
+	local title_curr = get_title()
+	local artist_curr = get_artist()
+	
+	if title_prev and title_curr then
+		if title_prev == title_curr then
+			--maybe this song has the same title, but a different performer
+			if artist_prev and artist_curr then
+				if artist_prev == artist_curr then
+					--nothing, do not reload (keep the lyrics as they are)
+				else
+					lyric:set_text(translation["message_newsong"])
+					dlg:set_title(translation["dialogtitle_normal"])
+				end
+			end
+		else
+			--it's a different song
+			lyric:set_text(translation["message_newsong"])
+			dlg:set_title(translation["dialogtitle_normal"])
+		end
+	end
+	
+	title:set_text(title_curr)
+	artist:set_text(artist_curr)
 	dlg:update()
 	--click_google()
 	collectgarbage()
