@@ -1,0 +1,18 @@
+<dialogtitle_normal>Lirieke</dialogtitle_normal>
+<dialogtitle_notfound>Nie gevind nie</dialogtitle_notfound>
+<dialogtitle_lyricsof>Lirieke van</dialogtitle_lyricsof>
+<dialogtitle_performedby>by</dialogtitle_lyricsof>
+<button_getlyrics>Kry lirieke</button_getlyrics>
+<button_refresh>Verfris</button_refresh>
+<button_switch>Ruil om</button_switch>
+<button_close>Sluit af</button_close>
+<button_google>Soek met Google</button_google>
+<button_update>Bring op datum</button_update>
+<label_title>Titel:</label_title>
+<label_artist>Kunstenaar:</label_artist>
+<label_source>Oorsprong:</label_source>
+<message_newsong>"Nuwe lied gelaai. Vir lierike, kliek Kry lirieke."</message_newsong>
+<message_loading>Laai..</message_loading>
+<message_incorrect>Verkeerde kunstenaar of titel.</message_incorrect>
+<message_notfound>Lirieke nie gevind nie.</message_notfound>
+Translated by Miles Sharpe

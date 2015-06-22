@@ -20,7 +20,7 @@
 --Golyr.de
 --AZ Lyrics
 --Lyrics.com (-)
---Lyricsmania.com (-)
+--Lyricsmania.com (-) (is http://www.parolesmania.com the same?)
 --Lyrics Mode (1 000 000 song lyrics)
 
 -- FIXME: add additional site compatibility
@@ -85,6 +85,7 @@ translation = {
 }
 
 languages = {
+	{'afr', 'Afrikaans'},
 	{'alb', 'Albanian'},
 	{'ara', 'Arabic'},
 	{'arm', 'Armenian'},
@@ -154,6 +155,7 @@ languages = {
 -- Languages code conversion table: iso-639-1 to iso-639-3
 -- See https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
 local lang_os_to_iso = {
+	af = "afr",
 	sq = "alb",
 	ar = "ara",
 	hy = "arm",
