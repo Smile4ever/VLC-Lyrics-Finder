@@ -11,7 +11,7 @@
 <label_title>Título:</label_title>
 <label_artist>Artista:</label_artist>
 <label_source>Fuente:</label_source>
-<message_newsong>Nueva canción cargada. Para ver la letra, haga clic en Buscar letras.</message_newsong>
+<message_newsong>Nueva canción cargada. Para ver la letra, haga clic en Buscar letra.</message_newsong>
 <message_loading>Cargar..</message_loading>
 <message_incorrect>Artista o título incorrecto.</message_incorrect>
 <message_notfound>Letra no encontrada.</message_notfound>
