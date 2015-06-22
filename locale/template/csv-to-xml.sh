@@ -20,5 +20,6 @@ do
 	sed -i 's/>,/>/' $filename
 	sed -i 's/,</</' $filename
 	sed -i 's/,,//' $filename
+	sed -i 's/\"//' $filename
 	mv "$filename" "`basename $filename .csv`.xml"
 done

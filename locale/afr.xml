@@ -11,7 +11,7 @@
 <label_title>Titel:</label_title>
 <label_artist>Kunstenaar:</label_artist>
 <label_source>Oorsprong:</label_source>
-<message_newsong>"Nuwe lied gelaai. Vir lierike, kliek Kry lirieke."</message_newsong>
+<message_newsong>Nuwe lied gelaai. Vir lierike, kliek Kry lirieke.</message_newsong>
 <message_loading>Laai..</message_loading>
 <message_incorrect>Verkeerde kunstenaar of titel.</message_incorrect>
 <message_notfound>Lirieke nie gevind nie.</message_notfound>
