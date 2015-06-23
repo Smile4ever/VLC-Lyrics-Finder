@@ -1029,7 +1029,11 @@ function get_title()
 	if pos == nil then
 		return "" --invalid things
 	end
-		
+	
+	if spacepos == nil then
+		return "" --invalid things (for example "-IRememberYou")
+	end
+	
 	if pos < spacepos then
 		local oldpos = pos
 		pos = filename:find("-", spacepos)
@@ -1054,7 +1058,8 @@ function get_title()
 		--no space after pos
 		amount = 1
 	else
-		if space_after_pos > pos + 1 then
+		--was +1
+		if space_after_pos > pos - 1 then
 			amount = 1
 		end
 	end
@@ -1117,13 +1122,17 @@ function get_artist()
 	end
 	if spacepos == nil then
 		--return "notok"
-		--spacepos = 5
+		--spacepos = 0
 	end
 
 	if hyphenpos == nil then
 		return "" --invalid things
 	end
 	
+	if spacepos == nil then
+		return "" --invalid things (for example "-IRememberYou")
+	end
+		
 	if hyphenpos < spacepos then
 		local oldpos = hyphenpos
 		hyphenpos = filename:find("-", spacepos) --was not the right hyphen (a-ha)
@@ -1141,9 +1150,10 @@ function get_artist()
 	local space_after_pos = filename:find("%s", hyphenpos)
 
 	if space_after_pos == nil then
-		--no space after pos (Artist-Title or Artist- Title)
+		--no space after hyphenpos (Artist-Title)
 		amount = 1
 	else
+		--space after hyphenpos (Artist- Title)
 		--equal to or greather than (was space_after_pos > hyphenpos + 1)
 		if space_after_pos > hyphenpos - 1 then
 			amount = 1
