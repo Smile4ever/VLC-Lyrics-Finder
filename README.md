@@ -1,8 +1,8 @@
 VLC Lyrics Finder
 ==============
 
-![Lyrics Finder 0.3.0 on Linux](http://hugsmile.eu/file/lyricsfinder/screenshot-v030.png)
 VLC media player lyrics extension. Supports MetroLyrics, Sonic Hits, Golyr.de, AZ Lyrics, Lyrics.com, Lyricsmania.com and Lyrics Mode.
+![Lyrics Finder 0.3.0 on Linux](http://hugsmile.eu/file/lyricsfinder/screenshot-v030.png)
 
 Installation
 -------------
