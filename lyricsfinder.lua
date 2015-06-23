@@ -1139,11 +1139,13 @@ function get_artist()
 
 	local amount = 2
 	local space_after_pos = filename:find("%s", hyphenpos)
+
 	if space_after_pos == nil then
 		--no space after pos (Artist-Title or Artist- Title)
 		amount = 1
 	else
-		if space_after_pos > hyphenpos + 1 then
+		--equal to or greather than (was space_after_pos > hyphenpos + 1)
+		if space_after_pos > hyphenpos - 1 then
 			amount = 1
 		end
 	end
