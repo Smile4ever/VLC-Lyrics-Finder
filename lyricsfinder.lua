@@ -352,7 +352,6 @@ end
 --GPL code from VLSub
 function load_transl(path,code)
 	langcode = code
-	--if parse_xml(path) then
 	
 	local tmpFile = assert(io.open(path, "rb"))
 	local resp = tmpFile:read("*all")
@@ -361,11 +360,8 @@ function load_transl(path,code)
 	
 	translation = nil
 	translation = parse_xml(resp)
-		--vlc.msg.dbg("Lyrics Finder" .. translation)
-	--end
 
 	apply_translation()
-	
 end
 
 --GPL code from VLSub
@@ -375,8 +371,8 @@ function apply_translation()
 	
 		if not translation[k] then
 			translation[k] = en_translation[k]
-		else
-			vlc.msg.dbg("Lyrics Finder" .. translation[k])
+		--else
+			--vlc.msg.dbg("Lyrics Finder" .. translation[k])
 		end
 	end
 end
