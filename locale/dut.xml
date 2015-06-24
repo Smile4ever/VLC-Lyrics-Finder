@@ -11,7 +11,7 @@
 <label_title>Titel:</label_title>
 <label_artist>Artiest:</label_artist>
 <label_source>Bron:</label_source>
-<message_newsong>Nieuw liedje geladen. Om de lyrics op te halen, klik op Lyrics opzoeken.</message_newsong>
+<message_newsong>Nieuw liedje geladen. Om de lyrics op te halen, klik op Songtekst opzoeken.</message_newsong>
 <message_loading>Laden..</message_loading>
 <message_incorrect>Incorrecte artiest of titel.</message_incorrect>
 <message_notfound>Songtekst niet gevonden.</message_notfound>
