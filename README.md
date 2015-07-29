@@ -7,6 +7,9 @@ VLC media player lyrics extension. Supports MetroLyrics, Sonic Hits, Golyr.de, A
 
 Installation
 -------------
+Download installer for Windows: [install](https://github.com/Smile4ever/VLC-Lyrics-Finder/raw/master/lyricsfinder-0.3.0.exe)
+
+Installation steps for Linux and OS X:
 1. Download [lyricsfinder.lua](https://raw.githubusercontent.com/Smile4ever/VLC-Lyrics-Finder/master/lyricsfinder.lua) (Use **File -> Save as** if necessary).
 2. Move the file to lyricsfinder.lua to **lua/extensions** inside your VLC folder. For example, **C:\Program Files\VideoLAN\VLC\lua\extensions\lyricsfinder.lua**
 3. To install the language files, put them inside your VLC folder in the subdirectory **lua/extensions/lyricsfinder/locale**. For example, **C:\Program Files\VideoLAN\VLC\lua\extensions\lyricsfinder\locale**
