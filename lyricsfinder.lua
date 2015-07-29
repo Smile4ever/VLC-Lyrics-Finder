@@ -511,6 +511,8 @@ function get_lyrics(title_x, artist_x)
 	--artist_x = artist_x:gsub('_&_','_and_')
 	artist_x = artist_x:gsub('_&_','_')
 	artist_x = artist_x:gsub('%.','')
+	artist_x = artist_x:gsub('ó', 'o') --Róisín Murphy
+	artist_x = artist_x:gsub('í', 'i') --Róisín Murphy
 		
 	local artist_metro = artist_x:gsub('[-]','') --a-ha is aha on metro lyrics, but a_ha on lyrics mode
 	artist_x = artist_x:gsub('[-]','_')
