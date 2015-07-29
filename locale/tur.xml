@@ -11,7 +11,7 @@
 <label_title>Başlık:</label_title>
 <label_artist>Sanatçı:</label_artist>
 <label_source>Kaynak:</label_source>
-<message_newsong>Yeni şarkı yüklendi. Sözleri Alın düğmesine tıklayarak, sözleri alın."</message_newsong>
+<message_newsong>Yeni şarkı yüklendi. Sözleri Alın düğmesine tıklayarak, sözleri alın.</message_newsong>
 <message_loading>Yükleniyor...</message_loading>
 <message_incorrect>Geçersiz sanatçı ya da başlık.</message_incorrect>
 <message_notfound>Söz bulunamadı.</message_notfound>
