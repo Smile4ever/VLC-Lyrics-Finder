@@ -1,7 +1,7 @@
 ;Product Info
 Name "Lyrics Finder"
 !define PRODUCT "Lyrics Finder"
-!define VERSION "0.3.0"
+!define VERSION "0.3.1"
 !include "MUI.nsh"
 
 ;--------------------------------
