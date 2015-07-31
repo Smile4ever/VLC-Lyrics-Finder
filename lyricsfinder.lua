@@ -226,7 +226,7 @@ local lang_os_to_iso = {
 function descriptor()
 	return {
 				title = "Lyrics Finder";
-				version = "0.3.1";
+				version = "0.3.1.1";
 				author = "rsyh93, alexxxnf, Smile4ever";
 				url = 'https://github.com/Smile4ever/VLC-Lyrics-Finder';
 				description = "<center><b>Lyrics Finder</b></center>"
@@ -1056,7 +1056,7 @@ function get_title()
 					-- instead this is playlist data (could be a m3u playlist)
 					-- use the parsing from below
 				else
-					return metas["title"]:find("%.") .. metas["title"]
+					return metas["title"]
 				end
 			end
 		end
