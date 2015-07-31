@@ -226,7 +226,7 @@ local lang_os_to_iso = {
 function descriptor()
 	return {
 				title = "Lyrics Finder";
-				version = "0.3.0";
+				version = "0.3.1";
 				author = "rsyh93, alexxxnf, Smile4ever";
 				url = 'https://github.com/Smile4ever/VLC-Lyrics-Finder';
 				description = "<center><b>Lyrics Finder</b></center>"
@@ -490,6 +490,14 @@ function download_update()
 	open_url("https://github.com/Smile4ever/VLC-Lyrics-Finder")
 end
 
+function readfile(path)
+	local tmpFile = assert(io.open(path, "rb"))
+	local resp = tmpFile:read("*all")
+	tmpFile:flush()
+	tmpFile:close()
+	return resp
+end
+
 function get_lyrics(title_x, artist_x)
 	if title_x == "" or artist_x == "" then
 		return ""
@@ -507,6 +515,7 @@ function get_lyrics(title_x, artist_x)
 	title_x = title_x:gsub("-", "_")
 	local original_title = title_x
 	title_x = title_x:gsub('[^%w_]','')
+	title_x = title_x:gsub('&','and')
 	artist_x = artist_x:gsub('&', 'and')
 	--artist_x = artist_x:gsub('_&_','_and_')
 	artist_x = artist_x:gsub('_&_','_')
@@ -515,24 +524,47 @@ function get_lyrics(title_x, artist_x)
 	artist_x = artist_x:gsub('í', 'i') --Róisín Murphy
 		
 	local artist_metro = artist_x:gsub('[-]','') --a-ha is aha on metro lyrics, but a_ha on lyrics mode
+	artist_metro = artist_metro:gsub('_','-')
 	artist_x = artist_x:gsub('[-]','_')
 	--artist_x = artist_x:gsub('[^%w_]','')
+	
+	local metrotitle = title_x:gsub('_','-')
 
 	local url = ""
 	local lyric_string = ""
 	local isLyricsMode = false
 	
 	if is_lyric_page(lyric_string) == false then		
-		local artist_metro = artist_metro:gsub('_','-')
-		local metrotitle = title_x:gsub('_','-')
 		local metrourl = "http://www.metrolyrics.com/"..metrotitle.."-lyrics-"..artist_metro..".html"
-		lyric_string = fetch_lyrics(metrourl)
+		--lyric_string = fetch_lyrics(metrourl)
 		
 		local artist_and_location = string.find(artist_metro, "-and-")
 
 		if artist_and_location then
 			artist_and_location = artist_metro:find("and", artist_and_location - 2)
 			if artist_and_location then
+				local tried_together_and
+				local tried_together_withdash
+				
+				if is_lyric_page(lyric_string) == false then
+					--vlc.msg.dbg("location:" .. string.len(artist_metro) - artist_and_location)
+					if string.len(artist_metro) - artist_and_location < 14 then
+						--quick code path to reduce the number of false tries
+						--probably not two separate artists, but one with a & in the name
+						--together
+						lyric_string = fetch_lyrics(metrourl)
+						tried_together_and = true
+						
+						if is_lyric_page(lyric_string) == false then
+							--together with a dash
+							local new_artist_metro = artist_metro:sub(1, artist_and_location - 2) .. "-" .. artist_metro:sub(artist_and_location + 4)
+							local url = "http://www.metrolyrics.com/"..metrotitle.."-lyrics-"..new_artist_metro..".html" --must be the same as above (except for the new_)
+							lyric_string = fetch_lyrics(url)
+							tried_together_withdash = true
+						end
+					end
+				end
+								
 				if is_lyric_page(lyric_string) == false then
 					--first artist
 					local new_artist_metro = artist_metro:sub(1, artist_and_location - 2)
@@ -545,7 +577,7 @@ function get_lyrics(title_x, artist_x)
 					local url = "http://www.metrolyrics.com/"..metrotitle.."-lyrics-"..new_artist_metro..".html" --must be the same as above (except for the new_)
 					lyric_string = fetch_lyrics(url)
 				end
-				if is_lyric_page(lyric_string) == false then
+				if is_lyric_page(lyric_string) == false and tried_together_withdash == false then
 					--together with a dash
 					local new_artist_metro = artist_metro:sub(1, artist_and_location - 2) .. "-" .. artist_metro:sub(artist_and_location + 4)
 					local url = "http://www.metrolyrics.com/"..metrotitle.."-lyrics-"..new_artist_metro..".html" --must be the same as above (except for the new_)
@@ -557,7 +589,14 @@ function get_lyrics(title_x, artist_x)
 					local url = "http://www.metrolyrics.com/"..metrotitle.."-lyrics-"..new_artist_metro..".html" --must be the same as above (except for the new_)
 					lyric_string = fetch_lyrics(url)
 				end
+
+				if is_lyric_page(lyric_string) == false and tried_together_and == false then
+					--together
+					lyric_string = fetch_lyrics(metrourl)
+				end
 			end
+		else
+			lyric_string = fetch_lyrics(metrourl)
 		end
 
 		source_label:set_text("MetroLyrics")
@@ -1012,7 +1051,13 @@ function get_title()
 			name = metas["now_playing"]
 		else
 			if metas["title"] then
-				return metas["title"]
+				if metas["title"]:find("%.") > string.len(metas["title"]) - 6 then
+					-- this is no real metadata because it contains a dot near the end (as extension of a file name)
+					-- instead this is playlist data (could be a m3u playlist)
+					-- use the parsing from below
+				else
+					return metas["title"]:find("%.") .. metas["title"]
+				end
 			end
 		end
 	--else
