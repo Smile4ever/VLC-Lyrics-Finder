@@ -7,7 +7,7 @@ VLC media player lyrics extension. Supports MetroLyrics, Sonic Hits, Golyr.de, A
 
 Installation
 -------------
-Download installer for Windows: [install](https://github.com/Smile4ever/VLC-Lyrics-Finder/raw/master/lyricsfinder-0.3.0.exe)
+Download installer for Windows: [install](https://github.com/Smile4ever/VLC-Lyrics-Finder/raw/master/lyricsfinder-0.3.1.exe)
 
 Installation steps for Linux and OS X:
 
