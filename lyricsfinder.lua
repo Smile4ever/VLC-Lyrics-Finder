@@ -564,19 +564,26 @@ function get_lyrics(title_x, artist_x)
 						end
 					end
 				end
-								
+					
+				local first_artist_url		
 				if is_lyric_page(lyric_string) == false then
 					--first artist
 					local new_artist_metro = artist_metro:sub(1, artist_and_location - 2)
 					local url = "http://www.metrolyrics.com/"..metrotitle.."-lyrics-"..new_artist_metro..".html" --must be the same as above (except for the new_)
+					first_artist_url = url
 					lyric_string = fetch_lyrics(url)
 				end
 				if is_lyric_page(lyric_string) == false then
 					--second artist
 					local new_artist_metro = artist_metro:sub(artist_and_location + 4)
 					local url = "http://www.metrolyrics.com/"..metrotitle.."-lyrics-"..new_artist_metro..".html" --must be the same as above (except for the new_)
-					lyric_string = fetch_lyrics(url)
+					if first_artist_url == url then
+						--do nothing
+					else
+						lyric_string = fetch_lyrics(url)
+					end
 				end
+				
 				if is_lyric_page(lyric_string) == false and tried_together_withdash == false then
 					--together with a dash
 					local new_artist_metro = artist_metro:sub(1, artist_and_location - 2) .. "-" .. artist_metro:sub(artist_and_location + 4)
@@ -643,12 +650,14 @@ function get_lyrics(title_x, artist_x)
 		isLyricsMode = true
 	end
 	
+	local first_artist_name
 	if is_lyric_page(lyric_string) == false then
 		local artist_and_location = artist_x:find("_and_")
 		if artist_and_location then
 			artist_and_location = artist_x:find("and", artist_and_location - 2)
 			--try again without and (first artist)
 			local new_artist_x = artist_x:sub(1, artist_and_location - 2)
+			first_artist_name = new_artist_x
 			url = "http://www.lyricsmode.com/lyrics/"..new_artist_x:sub(1,1).."/"..new_artist_x.."/"..title_x..".html" --must be the same as above (except for the new_)
 			lyric_string = fetch_lyrics(url)
 			isLyricsMode = true
@@ -661,9 +670,13 @@ function get_lyrics(title_x, artist_x)
 			artist_and_location = artist_x:find("and", artist_and_location - 2)
 			--try again without and (second artist)
 			local new_artist_x = artist_x:sub(artist_and_location + 4) --length of and + 1
-			url = "http://www.lyricsmode.com/lyrics/"..new_artist_x:sub(1,1).."/"..new_artist_x.."/"..title_x..".html" --must be the same as above (except for the new_)
-			lyric_string = fetch_lyrics(url)
-			isLyricsMode = true
+			if first_artist_name == new_artist_x then
+				--do nothing
+			else
+				url = "http://www.lyricsmode.com/lyrics/"..new_artist_x:sub(1,1).."/"..new_artist_x.."/"..title_x..".html" --must be the same as above (except for the new_)
+				lyric_string = fetch_lyrics(url)
+				isLyricsMode = true
+			end
 		end
 	end
 	
