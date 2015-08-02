@@ -17,11 +17,11 @@
 --Supported websites (by priority)
 --MetroLyrics (1 000 000 song lyrics)
 --Sonic Hits (many lyrics)
+--Lyrics Mode (1 000 000 song lyrics)
 --Golyr.de
 --AZ Lyrics
 --Lyrics.com (-)
 --Lyricsmania.com (-) (is http://www.parolesmania.com the same?)
---Lyrics Mode (1 000 000 song lyrics)
 
 -- FIXME: add additional site compatibility
 --------- http://lyrics123.net (500.000 song lyrics)
@@ -624,33 +624,6 @@ function get_lyrics(title_x, artist_x)
 	end
 	
 	if is_lyric_page(lyric_string) == false then
-		url = "http://www.golyr.de/" .. artist_x:gsub("_","-") .. "/songtext-" .. title_x:gsub("_", "-")
-		lyric_string = fetch_lyrics(url)
-		source_label:set_text("Golyr.de")
-		isLyricsMode = false
-	end
-	
-	if is_lyric_page(lyric_string) == false then
-		url = "http://www.azlyrics.com/lyrics/" .. artist_x:gsub("_", "") .. "/" .. title_x:gsub("_", "") ..".html"
-		lyric_string = fetch_lyrics(url)
-		source_label:set_text("AZ Lyrics")
-		isLyricsMode = false
-	end
-	
-	if is_lyric_page(lyric_string) == false then
-		url = "http://www.lyrics.com/"..title_x:gsub("_", "-").."-lyrics-"..artist_x:gsub("_", "-")..".html"
-		lyric_string = fetch_lyrics(url)
-		source_label:set_text("Lyrics.com")
-		isLyricsMode = false
-	end
-	
-	if is_lyric_page(lyric_string) == false then
-		url = "http://www.lyricsmania.com/"..title_x:gsub("-", "_").."_lyrics_"..artist_x..".html"
-		lyric_string = fetch_lyrics(url)
-		source_label:set_text("LyricsMania")
-	end
-	
-	if is_lyric_page(lyric_string) == false then
 		url = "http://www.lyricsmode.com/lyrics/"..artist_x:sub(1,1).."/"..artist_x.."/"..title_x..".html"
 		lyric_string = fetch_lyrics(url)
 		isLyricsMode = true
@@ -767,6 +740,33 @@ function get_lyrics(title_x, artist_x)
 			end
 		end
 	end	
+
+	if is_lyric_page(lyric_string) == false then
+		url = "http://www.golyr.de/" .. artist_x:gsub("_","-") .. "/songtext-" .. title_x:gsub("_", "-")
+		lyric_string = fetch_lyrics(url)
+		source_label:set_text("Golyr.de")
+		isLyricsMode = false
+	end
+	
+	if is_lyric_page(lyric_string) == false then
+		url = "http://www.azlyrics.com/lyrics/" .. artist_x:gsub("_", "") .. "/" .. title_x:gsub("_", "") ..".html"
+		lyric_string = fetch_lyrics(url)
+		source_label:set_text("AZ Lyrics")
+		isLyricsMode = false
+	end
+	
+	if is_lyric_page(lyric_string) == false then
+		url = "http://www.lyrics.com/"..title_x:gsub("_", "-").."-lyrics-"..artist_x:gsub("_", "-")..".html"
+		lyric_string = fetch_lyrics(url)
+		source_label:set_text("Lyrics.com")
+		isLyricsMode = false
+	end
+	
+	if is_lyric_page(lyric_string) == false then
+		url = "http://www.lyricsmania.com/"..title_x:gsub("-", "_").."_lyrics_"..artist_x..".html"
+		lyric_string = fetch_lyrics(url)
+		source_label:set_text("LyricsMania")
+	end
 
 	if lyric_string == nil then
 		return ""
