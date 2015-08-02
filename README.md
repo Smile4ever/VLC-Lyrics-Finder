@@ -35,6 +35,8 @@ Other buttons:
 * Refresh: force refresh of metadata and look up the lyrics
 * Switch: artist and title wrongly guessed? Click this button to switch them. The artist text becomes the title text, the title text becomes the artist text.
 
+When you open Lyrics Finder, it will try to make an attempt to get the lyrics. This means opening Lyrics Finder is enough if you want to see the lyrics of only one song.
+
 Intelligent guessing
 --------------------
 Since version 0.3.0, this script supports intelligent guessing. This means that when you name your files properly, it will detect the artist and song title from the filename. Good examples of file names:
