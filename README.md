@@ -53,7 +53,7 @@ If your files contain metadata, Lyrics Finder uses that information. Otherwise, 
 
 Sources
 -------
-Lyrics Finder gets its lyrics from several websites. If Lyrics Finder is unable to find lyrics for you song, verify that you comply with the Intelligent Guessing Format (see above) or make sure that you have proper metadata tags attached to your files.
+Lyrics Finder gets its lyrics from several websites. If Lyrics Finder is unable to find lyrics for your song, verify that you comply with the Intelligent Guessing Format (see above) or make sure that you have proper metadata tags attached to your files.
 
 With so many sites supported, it's still imaginable that the lyrics for a specific song are not yet available. You can [add them yourself using LyricsMode](http://www.lyricsmode.com/lyrics_submit.php).
 
