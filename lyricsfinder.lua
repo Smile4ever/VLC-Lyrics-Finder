@@ -525,6 +525,8 @@ function get_lyrics(title_x, artist_x)
 		
 	local artist_metro = artist_x:gsub('[-]','') --a-ha is aha on metro lyrics, but a_ha on lyrics mode
 	artist_metro = artist_metro:gsub('_','-')
+	
+	
 	artist_x = artist_x:gsub('[-]','_')
 	--artist_x = artist_x:gsub('[^%w_]','')
 	
@@ -604,6 +606,10 @@ function get_lyrics(title_x, artist_x)
 			end
 		else
 			lyric_string = fetch_lyrics(metrourl)
+			if is_lyric_page(lyric_string) == false and string.find(artist_metro, 'the%-') then
+				local new_artist_metro = artist_metro:gsub('the%-','')
+				lyric_string = fetch_lyrics("http://www.metrolyrics.com/"..metrotitle.."-lyrics-"..new_artist_metro..".html")
+			end
 		end
 
 		source_label:set_text("MetroLyrics")
