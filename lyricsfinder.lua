@@ -507,6 +507,7 @@ function get_lyrics(title_x, artist_x)
 	artist_x = trim(artist_x)
 
 	title_x = string.gsub(title_x, " ", "_")
+	artist_x = artist_x:gsub('%s_%s', ' and ') --Womack _ Womack - Friends
 	artist_x = string.gsub(artist_x, " ", "_")
 
 	title_x = string.lower(title_x)
@@ -1163,25 +1164,25 @@ function get_artist()
     
 	--unknown metadata, make a guess
 	local filename = string.gsub(name, "^(.+)%.%w+$", "%1")
-
 	local hyphenpos = filename:find("-")
-	local spacepos = filename:find("%s")
 		
 	if hyphenpos == nil then
 		--item:name() does not contain a hyphen. probably metadata is title only
 		--filename = item:uri()
 		filename = string.gsub(item:uri(),".*/","") --tested on Linux and Windows
-		filename = string.gsub(filename,"%%20"," ") --replace space
-		filename = string.gsub(filename,"%%2C", ",") --replace comma
-		filename = string.gsub(filename,"%%26", "and") --replace & by and
-		filename = string.gsub(filename,"%%27", "") --replace single quote by nothing
-		filename = string.gsub(filename,"%%21","!") --replace exclamation mark by exclamation mark :)
-		filename = string.gsub(filename,"%s_%s", " and ") --replace underscore with spaces by and
-		filename = string.gsub(filename, "/^(.+)(\\.[^ .]+)?$/", "") --remove extension
-
-		hyphenpos = filename:find("-")
-		spacepos = filename:find("%s")
 	end
+		
+	filename = string.gsub(filename,"%%20"," ") --replace space
+	filename = string.gsub(filename,"%%2C", ",") --replace comma
+	filename = string.gsub(filename,"%%26", "and") --replace & by and
+	filename = string.gsub(filename,"%%27", "") --replace single quote by nothing
+	filename = string.gsub(filename,"%%21","!") --replace exclamation mark by exclamation mark :)
+	filename = string.gsub(filename, "/^(.+)(\\.[^ .]+)?$/", "") --remove extension
+	filename = string.gsub(filename,"%s_%s", " and ") --replace underscore with spaces by and
+	
+	local spacepos = filename:find("%s")
+	hyphenpos = filename:find("-")
+	
 	if spacepos == nil then
 		--return "notok"
 		--spacepos = 0
