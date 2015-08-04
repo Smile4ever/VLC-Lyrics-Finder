@@ -1245,7 +1245,9 @@ function open_url(url)
         if package.config:sub(1,1) == '\\' then -- windows
             open_cmd = function(url)
                 -- Should work on anything since (and including) win'95
-                os.execute(string.format('start "%s"', url))
+                -- todo: get default browser and handle it that way to eliminate the command prompt window
+				-- see http://lua-users.org/wiki/WindowsRegistry
+                os.execute('start ' .. url)
             end
         -- the only systems left should understand uname...
         elseif (io.popen("uname -s"):read'*a') == "Darwin" then -- OSX/Darwin ? (I can not test.)
