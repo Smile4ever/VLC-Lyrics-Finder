@@ -1031,19 +1031,28 @@ function is_lyric_page(lyric_string)
 	if lyric_string=="" or lyric_string==nil then
 		return false
 	end
+	
 	if lyric_string:len() < 40 then
 		--debug
 		return false
 	end
+	
 	if lyric_string:find("We are not in a position to display these lyrics due to licensing restrictions. Sorry for the inconvenience.") then
 		return false
 	end
+	
+	if lyric_string:find("Select your carrier...") then
+		--low quality lyrics
+		return false
+	end
+	
 	if lyric_string:find("No lyrics found for this song") then
 		if debug_enabled then
 			vlc.msg.dbg("[Lyrics Finder] Data dump: " .. lyric_string)
 		end
 		return false
 	end
+	
 	return true;
 end
 
@@ -1087,10 +1096,14 @@ function get_title()
 			name = metas["now_playing"]
 		else
 			if metas["title"] then
-				if metas["title"]:find("%.") > string.len(metas["title"]) - 6 then
-					-- this is no real metadata because it contains a dot near the end (as extension of a file name)
-					-- instead this is playlist data (could be a m3u playlist)
-					-- use the parsing from below
+				if metas["title"]:find("%.") then
+					if metas["title"]:find("%.") > string.len(metas["title"]) - 6 then
+						-- this is no real metadata because it contains a dot near the end (as extension of a file name)
+						-- instead this is playlist data (could be a m3u playlist)
+						-- use the parsing from below
+					else
+						return metas["title"]
+					end
 				else
 					return metas["title"]
 				end
