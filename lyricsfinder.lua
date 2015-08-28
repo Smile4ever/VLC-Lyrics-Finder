@@ -226,7 +226,7 @@ local lang_os_to_iso = {
 function descriptor()
 	return {
 				title = "Lyrics Finder";
-				version = "0.3.2";
+				version = "0.3.3";
 				author = "rsyh93, alexxxnf, Smile4ever";
 				url = 'https://github.com/Smile4ever/VLC-Lyrics-Finder';
 				description = "<center><b>Lyrics Finder</b></center>"
