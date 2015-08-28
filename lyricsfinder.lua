@@ -629,11 +629,13 @@ function get_lyrics(title_x, artist_x)
 		artist_and_location = artist_x:find("and", artist_and_location - 2)
 	end
 	
-	if is_lyric_page(lyric_string) == false then
-		local new_artist_x = artist_x:sub(1, artist_and_location - 2) .. "_" .. artist_x:sub(artist_and_location + 4)
-		url = "http://www.lyricsmode.com/lyrics/"..new_artist_x:sub(1,1).."/"..new_artist_x.."/"..title_x..".html" --must be the same as above (except for the new_)
-		lyric_string = fetch_lyrics(url)
-		isLyricsMode = true
+	if artist_and_location then
+		if is_lyric_page(lyric_string) == false then
+			local new_artist_x = artist_x:sub(1, artist_and_location - 2) .. "_" .. artist_x:sub(artist_and_location + 4)
+			url = "http://www.lyricsmode.com/lyrics/"..new_artist_x:sub(1,1).."/"..new_artist_x.."/"..title_x..".html" --must be the same as above (except for the new_)
+			lyric_string = fetch_lyrics(url)
+			isLyricsMode = true
+		end
 	end
 	
 	local first_artist_name
