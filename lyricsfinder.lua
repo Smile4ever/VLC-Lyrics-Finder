@@ -1164,8 +1164,8 @@ function get_title()
 		
     filename = string.sub(filename, pos + amount, parpos - amount)
     filename = string.gsub(filename, " Lyrics", "")
-    filename = string.gsub(filename,"ft%..*","") --remove featuring (TODO: if Title - Author gets implemented, make this more robuust)
-    filename = string.gsub(filename,"feat%..*","") --remove featuring (TODO: if Title - Author gets implemented, make this more robuust)
+    filename = string.gsub(filename,"ft%..*","") --remove featuring (TODO: if Title - Author gets implemented, make this more robust)
+    filename = string.gsub(filename,"feat%..*","") --remove featuring (TODO: if Title - Author gets implemented, make this more robust)
     filename = string.gsub(filename, "@.*","")
 	filename = string.gsub(filename," with Lyrics","") --remove with lyrics
 	filename = string.gsub(filename,"_ll","%'ll") --remove with lyrics
