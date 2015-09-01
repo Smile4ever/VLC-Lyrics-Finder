@@ -1143,9 +1143,13 @@ function get_title()
 		
 	local hyphenpostwo = filename:find("-", pos + 1)
 	if hyphenpostwo then
-		pos = hyphenpostwo --Olivia Newton-John
+		if hyphenpostwo > filename:len() - 4 then
+			--Wham! - Wake Me Up Before You Go-Go
+		else
+			pos = hyphenpostwo --Olivia Newton-John
+		end
 	end
-		
+			
 	local amount = 2;
 	local space_after_pos = filename:find("%s", pos)
 	if space_after_pos == nil then
@@ -1230,7 +1234,7 @@ function get_artist()
 	if hyphenpos < spacepos then
 		local oldpos = hyphenpos
 		hyphenpos = filename:find("-", spacepos) --was not the right hyphen (a-ha)
-				
+		
 		if hyphenpos == nil then
 			hyphenpos = oldpos
 		end	
@@ -1254,11 +1258,15 @@ function get_artist()
 		end
 	end
 
-	local hyphenpostwo = filename:find("[-]", hyphenpos + 1)
+	local hyphenpostwo = filename:find("-", hyphenpos + 1)
 	if hyphenpostwo == nil then
-		return string.sub(filename, 1, hyphenpos - amount)
+		return trim(string.sub(filename, 1, hyphenpos - amount))
 	else
-		return string.sub(filename, 1, hyphenpostwo - amount) --Olivia Newton-John
+		if hyphenpostwo > filename:len() - 4 then
+			return trim(string.sub(filename, 1, hyphenpos - amount)) --Wham! - Wake Me Up Before You Go-Go
+		else
+			return trim(string.sub(filename, 1, hyphenpostwo - amount)) --Olivia Newton-John
+		end
 	end
 end
 
