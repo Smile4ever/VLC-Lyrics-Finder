@@ -20,6 +20,7 @@ VLC folder path:
 
 * Windows 32 bit: **C:\Program Files\VideoLAN\VLC\lua\extensions\**
 * Windows 64 bit: **C:\Program Files (x86)\VideoLAN\VLC\lua\extensions\**
+* Mac OS X: **~/Library/Application\ Support/org.videolan.vlc/lua/extensions/**
 * Linux user path: **/home/$USER/.local/share/vlc/lua/extensions**
 * Linux system path: **/usr/share/vlc/lua/extensions**
 
