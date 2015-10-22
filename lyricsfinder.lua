@@ -1292,7 +1292,7 @@ function open_url(url)
         -- the only systems left should understand uname...
         elseif (io.popen("uname -s"):read'*l') == "Darwin" then
             open_cmd = function(url)
-                -- I cannot test, but this should work on modern Macs.
+                -- opening urls with the default application
                 os.execute(string.format('open "%s"', url))
             end
         else -- that ought to only leave Linux
