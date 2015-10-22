@@ -450,6 +450,8 @@ end
 --GPL code from VLsub
 function getenv_lang()
 -- Retrieve the user OS language
+-- echo ${LANG?Error LANG is not defined}
+-- -bash: LANG: Error LANG is not defined
 	local os_lang = os.getenv("LANG") .. os.getenv("LC_ALL") -- one of both should exist
 	
 	if os_lang then -- unix, mac
@@ -469,9 +471,7 @@ end
 
 function click_switch()
 	local title_local = title:get_text()
-	local artist_local = artist:get_text()
-	
-	title:set_text(artist_local)
+	title:set_text(artist:get_text())
 	artist:set_text(title_local)
 	
 	dlg:update()
@@ -493,7 +493,7 @@ end
 
 function readfile(path)
 	local tmpFile = assert(io.open(path, "rb"))
-	local resp = tmpFile:read("*all")
+	local resp = tmpFile:read("*a")
 	tmpFile:flush()
 	tmpFile:close()
 	return resp
