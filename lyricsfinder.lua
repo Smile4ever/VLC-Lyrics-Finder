@@ -309,19 +309,20 @@ function show_dialog()
 	-- column, row, col_span, row_span, width, height
 
 	dlg:add_label(translation["label_title"], 1, 1, 1, 1)
-	title = dlg:add_text_input(get_title(), 2, 1, 5, 1)
+	title = dlg:add_text_input(get_title(),   2, 1, 3, 1)
 
-	dlg:add_label(translation["label_artist"], 1, 2, 1, 1)
-	artist = dlg:add_text_input(get_artist(), 2, 2, 5, 1)
+	dlg:add_label(translation["label_artist"], 1, 2, 1)
+	artist = dlg:add_text_input(get_artist(),  2, 2, 3)
 
-	dlg:add_button(translation["button_getlyrics"], update_lyrics, 1, 3, 4, 1)
-	dlg:add_button(translation["button_refresh"], update_metas, 7, 1, 1, 1)
-	dlg:add_button(translation["button_switch"], click_switch, 7, 2, 1, 1)
-	dlg:add_button(translation["button_close"], deactivate, 7, 3, 1, 1)
-	dlg:add_button(translation["button_google"], click_google, 5, 3, 2, 1)
-	dlg:add_button(translation["button_update"], download_update, 7, 28, 1, 1)
-	lyric = dlg:add_html("", 1, 5, 7, 20, 6, 18)
-	source_label=dlg:add_label(translation["label_source"], 1, 28, 6, 1)
+	dlg:add_button(translation["button_refresh"], update_metas, 5, 1, 1)
+	dlg:add_button(translation["button_switch"], click_switch, 5, 2, 1)
+
+	dlg:add_button(translation["button_getlyrics"], update_lyrics, 1, 3, 1)
+	dlg:add_button(translation["button_google"], click_google,     2, 3, 1)
+  source_label=dlg:add_label(translation["label_source"],        3, 3, 1)
+	dlg:add_button(translation["button_update"], download_update,  5, 3, 1)
+--  dlg:add_button(translation["button_close"], deactivate,        5, 3, 1)
+	lyric = dlg:add_html("", 1, 4, 7, 12, 7, 12)
 	
 	update_lyrics()
 	return true
