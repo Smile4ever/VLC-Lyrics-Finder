@@ -448,8 +448,8 @@ end
 
 --GPL code from VLsub
 function getenv_lang()
--- Retrieve the user OS language 
-	local os_lang = os.getenv("LANG")
+-- Retrieve the user OS language
+	local os_lang = os.getenv("LANG") .. os.getenv("LC_ALL") -- one of both should exist
 	
 	if os_lang then -- unix, mac
 		os_lang = string.sub(os_lang, 0, 2)
@@ -462,7 +462,7 @@ function getenv_lang()
 		  if v[2] == lang_w then
 			return v[1]
 		  end
-		end 
+		end
 	end
 end
 
@@ -1289,7 +1289,7 @@ function open_url(url)
                 os.execute('start ' .. url)
             end
         -- the only systems left should understand uname...
-        elseif (io.popen("uname -s"):read'*a') == "Darwin" then -- OSX/Darwin ? (I can not test.)
+        elseif (io.popen("uname -s"):read'*l') == "Darwin" then
             open_cmd = function(url)
                 -- I cannot test, but this should work on modern Macs.
                 os.execute(string.format('open "%s"', url))
