@@ -450,9 +450,10 @@ end
 --GPL code from VLsub
 function getenv_lang()
 -- Retrieve the user OS language
--- echo ${LANG?Error LANG is not defined}
--- -bash: LANG: Error LANG is not defined
-	local os_lang = os.getenv("LANG") .. os.getenv("LC_ALL") -- one of both should exist
+	local os_lang = os.getenv("LANG")
+	if not os_lang then
+	  os_lang = os.getenv("LC_ALL")
+  end
 	
 	if os_lang then -- unix, mac
 		os_lang = string.sub(os_lang, 0, 2)
