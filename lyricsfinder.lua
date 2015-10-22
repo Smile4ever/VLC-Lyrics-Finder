@@ -309,19 +309,20 @@ function show_dialog()
 	-- column, row, col_span, row_span, width, height
 
 	dlg:add_label(translation["label_title"], 1, 1, 1, 1)
-	title = dlg:add_text_input(get_title(), 2, 1, 5, 1)
+	title = dlg:add_text_input(get_title(),   2, 1, 3, 1)
 
-	dlg:add_label(translation["label_artist"], 1, 2, 1, 1)
-	artist = dlg:add_text_input(get_artist(), 2, 2, 5, 1)
+	dlg:add_label(translation["label_artist"], 1, 2, 1)
+	artist = dlg:add_text_input(get_artist(),  2, 2, 3)
 
-	dlg:add_button(translation["button_getlyrics"], update_lyrics, 1, 3, 4, 1)
-	dlg:add_button(translation["button_refresh"], update_metas, 7, 1, 1, 1)
-	dlg:add_button(translation["button_switch"], click_switch, 7, 2, 1, 1)
-	dlg:add_button(translation["button_close"], deactivate, 7, 3, 1, 1)
-	dlg:add_button(translation["button_google"], click_google, 5, 3, 2, 1)
-	dlg:add_button(translation["button_update"], download_update, 7, 28, 1, 1)
-	lyric = dlg:add_html("", 1, 5, 7, 20, 6, 18)
-	source_label=dlg:add_label(translation["label_source"], 1, 28, 6, 1)
+	dlg:add_button(translation["button_refresh"], update_metas, 5, 1, 1)
+	dlg:add_button(translation["button_switch"], click_switch, 5, 2, 1)
+
+	dlg:add_button(translation["button_getlyrics"], update_lyrics, 1, 3, 1)
+	dlg:add_button(translation["button_google"], click_google,     2, 3, 1)
+  source_label=dlg:add_label(translation["label_source"],        3, 3, 1)
+	dlg:add_button(translation["button_update"], download_update,  5, 3, 1)
+--  dlg:add_button(translation["button_close"], deactivate,        5, 3, 1)
+	lyric = dlg:add_html("", 1, 4, 7, 12, 7, 12)
 	
 	update_lyrics()
 	return true
@@ -448,8 +449,11 @@ end
 
 --GPL code from VLsub
 function getenv_lang()
--- Retrieve the user OS language 
+-- Retrieve the user OS language
 	local os_lang = os.getenv("LANG")
+	if not os_lang then
+	  os_lang = os.getenv("LC_ALL")
+  end
 	
 	if os_lang then -- unix, mac
 		os_lang = string.sub(os_lang, 0, 2)
@@ -462,15 +466,13 @@ function getenv_lang()
 		  if v[2] == lang_w then
 			return v[1]
 		  end
-		end 
+		end
 	end
 end
 
 function click_switch()
 	local title_local = title:get_text()
-	local artist_local = artist:get_text()
-	
-	title:set_text(artist_local)
+	title:set_text(artist:get_text())
 	artist:set_text(title_local)
 	
 	dlg:update()
@@ -492,7 +494,7 @@ end
 
 function readfile(path)
 	local tmpFile = assert(io.open(path, "rb"))
-	local resp = tmpFile:read("*all")
+	local resp = tmpFile:read("*a")
 	tmpFile:flush()
 	tmpFile:close()
 	return resp
@@ -1289,9 +1291,9 @@ function open_url(url)
                 os.execute('start ' .. url)
             end
         -- the only systems left should understand uname...
-        elseif (io.popen("uname -s"):read'*a') == "Darwin" then -- OSX/Darwin ? (I can not test.)
+        elseif (io.popen("uname -s"):read'*l') == "Darwin" then
             open_cmd = function(url)
-                -- I cannot test, but this should work on modern Macs.
+                -- opening urls with the default application
                 os.execute(string.format('open "%s"', url))
             end
         else -- that ought to only leave Linux
