@@ -1289,7 +1289,7 @@ function open_url(url)
                 -- Should work on anything since (and including) win'95
                 -- todo: get default browser and handle it that way to eliminate the command prompt window
 				-- see http://lua-users.org/wiki/WindowsRegistry
-                os.execute('start ' .. url)
+                os.execute('start ' .. url:gsub("% ","+"))
             end
         -- the only systems left should understand uname...
         elseif (io.popen("uname -s"):read'*l') == "Darwin" then
