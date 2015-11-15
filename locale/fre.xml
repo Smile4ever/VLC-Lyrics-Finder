@@ -15,4 +15,6 @@
 <message_loading>Charger..</message_loading>
 <message_incorrect>Artiste ou titre incorrect.</message_incorrect>
 <message_notfound>Paroles non trouvés.</message_notfound>
-Translated by Jennifer De Belie
+<message_nosong>Aucune chanson chargé.</message_nosong>
+
+<!-- Translated by Jennifer De Belie -->

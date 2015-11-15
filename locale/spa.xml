@@ -15,4 +15,6 @@
 <message_loading>Cargar..</message_loading>
 <message_incorrect>Artista o título incorrecto.</message_incorrect>
 <message_notfound>Letra no encontrada.</message_notfound>
-Translated by Jennifer De Belie
+<message_nosong>Ninguna canción cargada.</message_nosong>
+
+<!-- Translated by Jennifer De Belie -->

@@ -1005,7 +1005,13 @@ function input_changed()
 			end
 		else
 			--it's a different song
-			lyric:set_text(translation["message_newsong"])
+			local item = vlc.item or vlc.input.item()
+			if not item then
+				--no song loaded
+				lyric:set_text(translation["message_nosong"])
+			else
+				lyric:set_text(translation["message_newsong"])
+			end
 			dlg:set_title(translation["dialogtitle_normal"])
 		end
 	end
@@ -1068,7 +1074,14 @@ function update_lyrics()
 	if is_lyric_page(lyric_string) == false then
 		if debug_enabled == false then
 			if artist:get_text() == "" or title:get_text() == "" then
-				lyric:set_text("<i>" .. translation["message_incorrect"] .. "<i>")
+				local item = vlc.item or vlc.input.item()
+				if not item then
+					lyric:set_text(translation["message_nosong"])
+					dlg:set_title(translation["dialogtitle_normal"])
+					return
+				else
+					lyric:set_text("<i>" .. translation["message_incorrect"] .. "<i>")
+				end
 			else
 				lyric:set_text("<i>" .. translation["message_notfound"] .. "</i>")
 			end

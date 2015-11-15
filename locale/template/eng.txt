@@ -15,3 +15,4 @@ New song loaded. To get the lyrics, click Get Lyrics.
 Loading..
 Incorrect artist or title.
 Lyrics not found.
+No song loaded.

@@ -15,4 +15,6 @@
 <message_loading>Lädt..</message_loading>
 <message_incorrect>Falscher Künstler oder Titel.</message_incorrect>
 <message_notfound>Liedtext nicht gefunden.</message_notfound>
+<message_nosong>Kein Lied geladen.</message_nosong>
+
 <!-- Translated by Leon Liesener -->

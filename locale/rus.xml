@@ -15,4 +15,6 @@
 <message_loading>Загрузка..</message_loading>
 <message_incorrect>Некорректное название или исполнитель.</message_incorrect>
 <message_notfound>Текст песни не найден.</message_notfound>
+<message_nosong>песня не загружается</message_nosong>
+
 <!-- Translated by Aleksey Maydokin -->
