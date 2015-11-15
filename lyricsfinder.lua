@@ -1171,6 +1171,7 @@ function get_title()
     filename = string.gsub(filename, "@.*","")
 	filename = string.gsub(filename," with Lyrics","") --remove with lyrics
 	filename = string.gsub(filename,"_ll","%'ll") --remove with lyrics
+    filename = string.gsub(filename,"w_ lyrics","") --remove w_ lyrics  
         
     return trim(filename)
 end
