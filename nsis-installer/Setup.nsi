@@ -1,8 +1,9 @@
 ;Product Info
 Name "Lyrics Finder"
 !define PRODUCT "Lyrics Finder"
-!define VERSION "0.3.3"
+!define VERSION "0.3.4-dev"
 !include "MUI.nsh"
+!include x64.nsh
 
 ;--------------------------------
 ;Configuration
@@ -16,6 +17,7 @@ SetDatablockOptimize On
 
 ;Remember install folder
 InstallDirRegKey HKCU "Software\${PRODUCT}" ""
+Var PROG3264
 
 ;--------------------------------
 ; Welcome page
@@ -32,13 +34,21 @@ InstallDirRegKey HKCU "Software\${PRODUCT}" ""
 
 ;Language
 !insertmacro MUI_LANGUAGE "English"
-     
+ 
 Section "section_1" section_1
+	
+	${If} ${RunningX64}
+	   SetRegView 64
+	   StrCpy $PROG3264 "$PROGRAMFILES64\"
+	${Else}
+	   StrCpy $PROG3264 "$PROGRAMFILES32\"
+	${EndIf}
+	StrCpy $INSTDIR "$PROG3264\VideoLAN\VLC\lua\extensions\"
 
   SetOverwrite try
-  SetOutPath "$PROGRAMFILES\VideoLAN\VLC\lua\extensions\"
+  SetOutPath "$INSTDIR"
   File "..\lyricsfinder.lua"
-  SetOutPath "$PROGRAMFILES\VideoLAN\VLC\lua\extensions\lyricsfinder\locale"
+  SetOutPath "$INSTDIR\lyricsfinder\locale"
   File /r /x Template "..\locale\"
 
 SectionEnd
@@ -47,20 +57,29 @@ Section Uninstaller
   !define ARP "Software\Microsoft\Windows\CurrentVersion\Uninstall\Lyrics Finder"
   !include "FileFunc.nsh"
  
+ 	${If} ${RunningX64}
+	   SetRegView 64
+	   StrCpy $PROG3264 "$PROGRAMFILES64\"
+	${Else}
+	   StrCpy $PROG3264 "$PROGRAMFILES32\"
+	${EndIf}
+	StrCpy $INSTDIR "$PROG3264\VideoLAN\VLC\lua\extensions\"
+ 
+ 
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Lyrics Finder" "DisplayName" "${PRODUCT} ${VERSION}"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Lyrics Finder" "DisplayVersion" "${VERSION}"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Lyrics Finder" "URLInfoAbout" "https://github.com/Smile4ever/VLC-Lyrics-Finder"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Lyrics Finder" "Publisher" "Hugsmile"
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Lyrics Finder" "DisplayIcon" "$PROGRAMFILES\VideoLAN\VLC\vlc.exe"
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Lyrics Finder" "UninstallString" "$PROGRAMFILES\VideoLAN\VLC\lua\extensions\lyricsfinder\Uninst.exe"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Lyrics Finder" "DisplayIcon" "$PROG3264\VideoLAN\VLC\vlc.exe"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Lyrics Finder" "UninstallString" "$PROG3264\VideoLAN\VLC\lua\extensions\lyricsfinder\Uninst.exe"
   ;WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Lyrics Finder" "HelpLink"
-  WriteRegStr HKCU "Software\${PRODUCT}" "" "$PROGRAMFILES\Lyrics Finder\"
+  WriteRegStr HKCU "Software\${PRODUCT}" "" "$INSTDIR\lyricsfinder\"
 
- ${GetSize} "$PROGRAMFILES\VideoLAN\VLC\lua\extensions\lyricsfinder\" "/S=0K" $0 $1 $2
+ ${GetSize} "$INSTDIR\lyricsfinder\" "/S=0K" $0 $1 $2
  IntFmt $0 "0x%08X" $0
  WriteRegDWORD HKLM "${ARP}" "EstimatedSize" "$0"
   
-  WriteUninstaller "$PROGRAMFILES\VideoLAN\VLC\lua\extensions\lyricsfinder\Uninst.exe"
+  WriteUninstaller "$INSTDIR\lyricsfinder\Uninst.exe"
 SectionEnd
  
 Function un.onUninstSuccess
@@ -78,15 +97,19 @@ Section "Uninstall"
   DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Lyrics Finder"
      
   SetOverwrite try
-  ;Delete "$DESKTOP\desktop.lnk"
-  RMDir /r "$PROGRAMFILES\VideoLAN\VLC\lua\extensions\lyricsfinder\"
-  Delete "$PROGRAMFILES\VideoLAN\VLC\lua\extensions\lyricsfinder.lua"
+  RMDir /r "$PROG3264\VideoLAN\VLC\lua\extensions\lyricsfinder\"
+  Delete "$PROG3264\VideoLAN\VLC\lua\extensions\lyricsfinder.lua"
   
 SectionEnd
 
 Function .onInstSuccess
    ;CreateShortCut "$DESKTOP\desktop.lnk" "$PROGRAMFILES\VideoLAN\VLC\vlc.exe" "" "$PROGRAMFILES\VideoLAN\VLC\vlc.exe"
-   ExecShell open "$PROGRAMFILES\VideoLAN\VLC\vlc.exe"
+   
+   ${If} ${RunningX64}
+	 ExecShell open "$PROG3264\VideoLAN\VLC\vlc.exe"
+   ${Else}
+     ExecShell open "$PROG3264\VideoLAN\VLC\vlc.exe"
+   ${EndIf}
 FunctionEnd
 
 ;eof
