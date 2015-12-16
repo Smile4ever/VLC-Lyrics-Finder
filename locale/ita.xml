@@ -1,0 +1,20 @@
+<dialogtitle_normal>Testo</dialogtitle_normal>
+<dialogtitle_notfound>Non trovato</dialogtitle_notfound>
+<dialogtitle_lyricsof>Testo di</dialogtitle_lyricsof>
+<dialogtitle_performedby>da</dialogtitle_lyricsof>
+<button_getlyrics>Prendi testo</button_getlyrics>
+<button_refresh>Rinfresca</button_refresh>
+<button_switch>Commuta</button_switch>
+<button_close>Chiudi</button_close>
+<button_google>Cerca con Google</button_google>
+<button_update>Prendi aggiornamenti</button_update>
+<label_title>Titolo:</label_title>
+<label_artist>Artista:</label_artist>
+<label_source>Sorgente:</label_source>
+<message_newsong>Nuova canzone caricata. Per prendere il testo, clicca Prendi testo.</message_newsong>
+<message_loading>Caricamento..</message_loading>
+<message_incorrect>Artista o Titolo incorretto.</message_incorrect>
+<message_notfound>Testo non trovato.</message_notfound>
+<message_nosong>Nessuna canzone caricata.</message_nosong>
+
+<!-- Translated by Enrico Passoni -->

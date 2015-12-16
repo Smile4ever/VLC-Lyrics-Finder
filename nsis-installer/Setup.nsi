@@ -58,10 +58,10 @@ Section Uninstaller
   !include "FileFunc.nsh"
  
  	${If} ${RunningX64}
-	   SetRegView 64
-	   StrCpy $PROG3264 "$PROGRAMFILES64\"
+	   ;SetRegView 64
+	   StrCpy $PROG3264 "$PROGRAMFILES64"
 	${Else}
-	   StrCpy $PROG3264 "$PROGRAMFILES32\"
+	   StrCpy $PROG3264 "$PROGRAMFILES32"
 	${EndIf}
 	StrCpy $INSTDIR "$PROG3264\VideoLAN\VLC\lua\extensions\"
  
@@ -95,6 +95,14 @@ FunctionEnd
 Section "Uninstall"
   DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\Lyrics Finder"
   DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Lyrics Finder"
+     
+  ${If} ${RunningX64}
+	   ;SetRegView 64
+	   StrCpy $PROG3264 "$PROGRAMFILES64"
+  ${Else}
+	   StrCpy $PROG3264 "$PROGRAMFILES32"
+  ${EndIf}
+  StrCpy $INSTDIR "$PROG3264\VideoLAN\VLC\lua\extensions\"
      
   SetOverwrite try
   RMDir /r "$PROG3264\VideoLAN\VLC\lua\extensions\lyricsfinder\"

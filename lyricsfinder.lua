@@ -226,7 +226,7 @@ local lang_os_to_iso = {
 function descriptor()
 	return {
 				title = "Lyrics Finder";
-				version = "0.3.3";
+				version = "0.4.0-dev";
 				author = "rsyh93, alexxxnf, Smile4ever";
 				url = 'https://github.com/Smile4ever/VLC-Lyrics-Finder';
 				description = "<center><b>Lyrics Finder</b></center>"
@@ -315,11 +315,11 @@ function show_dialog()
 	artist = dlg:add_text_input(get_artist(),  2, 2, 3)
 
 	dlg:add_button(translation["button_refresh"], update_metas, 5, 1, 1)
-	dlg:add_button(translation["button_switch"], click_switch, 5, 2, 1)
+	dlg:add_button("Lyrics Connect", lyricsconnect, 5, 2, 1)
 
 	dlg:add_button(translation["button_getlyrics"], update_lyrics, 1, 3, 1)
 	dlg:add_button(translation["button_google"], click_google,     2, 3, 1)
-  source_label=dlg:add_label(translation["label_source"],        3, 3, 1)
+	source_label=dlg:add_label(translation["label_source"],        3, 3, 1)
 	dlg:add_button(translation["button_update"], download_update,  5, 3, 1)
 --  dlg:add_button(translation["button_close"], deactivate,        5, 3, 1)
 	lyric = dlg:add_html("", 1, 4, 7, 12, 7, 12)
@@ -486,10 +486,35 @@ function click_google()
 	open_url("https://google.com/search?q=" .. query)
 end
 
+function get_downloads_path()
+	local download_path = os.getenv("XDG_DOWNLOAD_DIR")
+	if not download_path then
+		download_path = os.getenv("HOME")
+		if download_path then
+			download_path = download_path .. "/Downloads"
+		end 
+	end
+	return download_path
+end
+
 function download_update()
-	local installed_version = descriptor()["version"]
+	--local installed_version = descriptor()["version"]
 	
 	open_url("https://github.com/Smile4ever/VLC-Lyrics-Finder")
+	
+end
+
+function lyricsconnect()
+	local current_song = readfile(get_downloads_path() .. "/current-song.txt");
+	if current_song then
+		vlc.msg.dbg("current_song is " .. current_song)
+		local artistc = get_artist(current_song)
+		local titlec = get_title(current_song)
+		
+		artist:set_text(artistc);
+		title:set_text(titlec);
+		update_lyrics()
+	end
 end
 
 function readfile(path)
@@ -1099,38 +1124,48 @@ function update_lyrics()
 end
 
 -- Get clean title from filename
-function get_title()
+function get_title(sourcetext)
     local item = vlc.item or vlc.input.item()
-    if not item then
-        return ""
-    end
-    local name = item:name()
-    local metas = item:metas()
-	local uri = item:uri()
-
-	if uri:find("googlevideo") == nil then
-		if metas["now_playing"] then
-			name = metas["now_playing"]
-		else
-			if metas["title"] then
-				if metas["title"]:find("%.") then
-					if metas["title"]:find("%.") > string.len(metas["title"]) - 6 then
-						-- this is no real metadata because it contains a dot near the end (as extension of a file name)
-						-- instead this is playlist data (could be a m3u playlist)
-						-- use the parsing from below
+    local uri = ""
+    local name = ""
+    
+    if item then
+		name = item:name()
+		local metas = item:metas()
+		uri = item:uri()
+		
+		if uri:find("googlevideo") == nil then
+			if metas["now_playing"] then
+				name = metas["now_playing"]
+			else
+				if metas["title"] then
+					if metas["title"]:find("%.") then
+						if metas["title"]:find("%.") > string.len(metas["title"]) - 6 then
+							-- this is no real metadata because it contains a dot near the end (as extension of a file name)
+							-- instead this is playlist data (could be a m3u playlist)
+							-- use the parsing from below
+						else
+							return metas["title"]
+						end
 					else
 						return metas["title"]
 					end
-				else
-					return metas["title"]
 				end
 			end
+		--else
+		--	vlc.msg.dbg(item:name())
+		--	vlc.msg.dbg(metas["title"])
 		end
-	--else
-	--	vlc.msg.dbg(item:name())
-	--	vlc.msg.dbg(metas["title"])
+		
+    else
+		-- no song loaded
+		--return ""
+    end
+   	      
+   	if sourcetext then
+		name = sourcetext;
 	end
-	        
+   	        
     local filename = string.gsub(name, "^(.+)%.%w+$", "%1")
 	local pos = filename:find("-")
 	local spacepos = filename:find("%s")
@@ -1190,37 +1225,45 @@ function get_title()
 end
 
 -- Get clean artist from filename
-function get_artist()
+function get_artist(sourcetext)
     local item = vlc.item or vlc.input.item()
-    if not item then
-		--no song loaded
-        return ""
-    end
-    local name = item:name()
-    local metas = item:metas()
-    local uri = item:uri()
+    local name = ""
+    local uri
     
-	if uri:find("googlevideo") == nil then
-		if metas["now_playing"] then
-			name = metas["now_playing"]
-		else
-			if metas["artist"] then
-				return metas["artist"]
+    if item then
+        name = item:name()
+		local metas = item:metas()
+		uri = item:uri()
+    
+		if uri:find("googlevideo") == nil then
+			if metas["now_playing"] then
+				name = metas["now_playing"]
+			else
+				if metas["artist"] then
+					return metas["artist"]
+				end
 			end
+		--else
+		--	vlc.msg.dbg(item:name())
+		--	vlc.msg.dbg(metas["title"])
 		end
-	--else
-	--	vlc.msg.dbg(item:name())
-	--	vlc.msg.dbg(metas["title"])
+	else
+		-- no song loaded
+		-- return ""
+    end
+    
+    if sourcetext then
+		name = sourcetext;
 	end
     
 	--unknown metadata, make a guess
 	local filename = string.gsub(name, "^(.+)%.%w+$", "%1")
 	local hyphenpos = filename:find("-")
 		
-	if hyphenpos == nil then
+	if hyphenpos == nil and uri then
 		--item:name() does not contain a hyphen. probably metadata is title only
 		--filename = item:uri()
-		filename = string.gsub(item:uri(),".*/","") --tested on Linux and Windows
+		filename = string.gsub(uri,".*/","") --tested on Linux and Windows
 	end
 		
 	filename = string.gsub(filename,"%%20"," ") --replace space
