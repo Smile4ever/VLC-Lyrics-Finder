@@ -1,7 +1,7 @@
 ;Product Info
-Name "Lyrics Finder"
-!define PRODUCT "Lyrics Finder"
-!define VERSION "0.3.4"
+Name "VLC Lyrics Finder"
+!define PRODUCT "VLC Lyrics Finder"
+!define VERSION "0.3.4.1"
 !include "MUI.nsh"
 !include x64.nsh
 
@@ -11,12 +11,13 @@ OutFile "..\lyricsfinder-${VERSION}.exe"
 BRANDINGTEXT "Hugsmile.eu"
 
 ;Compression
-SetCompress Auto
+SetCompressor lzma
+;SetCompress auto
 SetCompressorDictSize 32
 SetDatablockOptimize On
 
 ;Remember install folder
-InstallDirRegKey HKCU "Software\${PRODUCT}" ""
+InstallDirRegKey HKLM "Software\${PRODUCT}" ""
 Var PROG3264
 
 ;--------------------------------
@@ -39,9 +40,9 @@ Section "section_1" section_1
 	
 	${If} ${RunningX64}
 	   SetRegView 64
-	   StrCpy $PROG3264 "$PROGRAMFILES64\"
+	   StrCpy $PROG3264 "$PROGRAMFILES64"
 	${Else}
-	   StrCpy $PROG3264 "$PROGRAMFILES32\"
+	   StrCpy $PROG3264 "$PROGRAMFILES32"
 	${EndIf}
 	StrCpy $INSTDIR "$PROG3264\VideoLAN\VLC\lua\extensions\"
 
@@ -58,14 +59,13 @@ Section Uninstaller
   !include "FileFunc.nsh"
  
  	${If} ${RunningX64}
-	   ;SetRegView 64
+	   SetRegView 64
 	   StrCpy $PROG3264 "$PROGRAMFILES64"
 	${Else}
 	   StrCpy $PROG3264 "$PROGRAMFILES32"
 	${EndIf}
 	StrCpy $INSTDIR "$PROG3264\VideoLAN\VLC\lua\extensions\"
- 
- 
+  
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Lyrics Finder" "DisplayName" "${PRODUCT} ${VERSION}"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Lyrics Finder" "DisplayVersion" "${VERSION}"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Lyrics Finder" "URLInfoAbout" "https://github.com/Smile4ever/VLC-Lyrics-Finder"
@@ -73,7 +73,7 @@ Section Uninstaller
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Lyrics Finder" "DisplayIcon" "$PROG3264\VideoLAN\VLC\vlc.exe"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Lyrics Finder" "UninstallString" "$PROG3264\VideoLAN\VLC\lua\extensions\lyricsfinder\Uninst.exe"
   ;WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Lyrics Finder" "HelpLink"
-  WriteRegStr HKCU "Software\${PRODUCT}" "" "$INSTDIR\lyricsfinder\"
+  WriteRegStr HKLM "Software\${PRODUCT}" "" "$INSTDIR\lyricsfinder\"
 
  ${GetSize} "$INSTDIR\lyricsfinder\" "/S=0K" $0 $1 $2
  IntFmt $0 "0x%08X" $0
@@ -93,17 +93,19 @@ Function un.onInit
 FunctionEnd
  
 Section "Uninstall"
-  DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\Lyrics Finder"
-  DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Lyrics Finder"
-     
+ 
+    
   ${If} ${RunningX64}
-	   ;SetRegView 64
+	   SetRegView 64
 	   StrCpy $PROG3264 "$PROGRAMFILES64"
   ${Else}
 	   StrCpy $PROG3264 "$PROGRAMFILES32"
   ${EndIf}
   StrCpy $INSTDIR "$PROG3264\VideoLAN\VLC\lua\extensions\"
-     
+  
+  DeleteRegKey HKEY_LOCAL_MACHINE "Software\Lyrics Finder"
+  DeleteRegKey HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Lyrics Finder"
+  
   SetOverwrite try
   RMDir /r "$PROG3264\VideoLAN\VLC\lua\extensions\lyricsfinder\"
   Delete "$PROG3264\VideoLAN\VLC\lua\extensions\lyricsfinder.lua"
