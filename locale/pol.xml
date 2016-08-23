@@ -1,0 +1,20 @@
+<dialogtitle_normal>Napisy</dialogtitle_normal>
+<dialogtitle_notfound>Nie znaleziono</dialogtitle_notfound>
+<dialogtitle_lyricsof>Napisy do</dialogtitle_lyricsof>
+<dialogtitle_performedby>od</dialogtitle_lyricsof>
+<button_getlyrics>Zdobądź napisy</button_getlyrics>
+<button_refresh>Odśwież</button_refresh>
+<button_switch>Przełącz</button_switch>
+<button_close>Zamknij</button_close>
+<button_google>Wyszukaj z Google</button_google>
+<button_update>Zdobądź aktualizacje</button_update>
+<label_title>Tytuł:</label_title>
+<label_artist>Artysta:</label_artist>
+<label_source>Źródło:</label_source>
+<message_newsong>Nowa piosenka załadowana. Aby zdobyć napisy, kliknij Zdobądź napisy.</message_newsong>
+<message_loading>Ładowanie..</message_loading>
+<message_incorrect>Niepoprawny artysta lub tytuł.</message_incorrect>
+<message_notfound>Nie znaleziono napisów.</message_notfound>
+<message_nosong>No piosenka załadowany.</message_nosong>
+
+<!-- Translated by Ola Kleniewska -->
