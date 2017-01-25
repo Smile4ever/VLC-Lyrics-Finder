@@ -226,7 +226,7 @@ local lang_os_to_iso = {
 function descriptor()
 	return {
 				title = "Lyrics Finder";
-				version = "0.4.0-dev";
+				version = "0.3.5";
 				author = "rsyh93, alexxxnf, Smile4ever";
 				url = 'https://github.com/Smile4ever/VLC-Lyrics-Finder';
 				description = "<center><b>Lyrics Finder</b></center>"
@@ -315,7 +315,8 @@ function show_dialog()
 	artist = dlg:add_text_input(get_artist(),  2, 2, 3)
 
 	dlg:add_button(translation["button_refresh"], update_metas, 5, 1, 1)
-	dlg:add_button("Lyrics Connect", lyricsconnect, 5, 2, 1)
+	--dlg:add_button("Lyrics Connect", lyricsconnect, 5, 2, 1)
+	dlg:add_button(translation["button_switch"], click_switch, 5, 2, 1)
 
 	dlg:add_button(translation["button_getlyrics"], update_lyrics, 1, 3, 1)
 	dlg:add_button(translation["button_google"], click_google,     2, 3, 1)
@@ -837,7 +838,6 @@ function fetch_lyrics(url)
 	--	return ""
 	--end
 
-	--debug
 	if debug_enabled then
 		vlc.msg.dbg("[Lyrics Finder] Fetch " .. url)
 		if lyric:get_text():find("http") then
@@ -866,26 +866,40 @@ function fetch_lyrics(url)
 	
 	if metro_pos then
 		--MetroLyrics
-		--local _,a = string.find(data, '<div id="lyrics-body-text">')
 		local a = string.find(data, 'lyrics%-body%-text', 1)
 		
 		if a == nil then
 			return ""
 		end
 		
-		local endofstring = '>'
+		local midsong = string.find(data, 'mid%-song%-discussion')
+		
+		if midsong == nil then
+			-- do nothing
+		else
+			--<div id=" has length 9
+			midsong = midsong - 9
+
+			local seeall = string.find(data, "See all")
+			local midsongend = string.find(data, "div", seeall) + 10 --was +25
+			--or verse -10
+			data = data:sub(0, midsong) .. data:sub(midsongend)
+		end
+
+		local endofstring = 'js%-lyric%-text' --length 13
 		local position = string.find(data, endofstring, a)
+
 		if position == nil then
 			return ""
-		end		
-				
-		local b,_ = string.find(data, "</div>", a, true)
-		--page does not contain lyrics
+		end
+		position = position + 15;
+		
+		local b = string.find(data, "div", a)
 		if b == nil then
-			return "";
+			return ""
 		end
 		
-		return data:sub(position+1,b-1)
+		return data:sub(position,b)
 	end
 	if lyricsmania then
 		local strong_text = "</strong>"
@@ -987,18 +1001,19 @@ function fetch_lyrics(url)
 			return ""
 		end
 
-		local b,_ = string.find(data, "</div>", position, true)
-		--artist:set_text(position .. "+" .. b)
-
+		local b = string.find(data, "</div>", position, true)
+		if b == nil then
+			return ""
+		end
 		return data:sub(position+5,b-1)
 	end
 	
 	if lyricscom then
-		local _,a = string.find(data, 'itemprop="description')
+		local a = string.find(data, 'itemprop="description')
 		if a == nil then
 			return "";
 		end
-		local b,_ = string.find(data, "---", a, true)
+		local b = string.find(data, "---", a, true)
 		return data:sub(a+4,b-1)
 	end
 	

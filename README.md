@@ -7,7 +7,7 @@ VLC media player lyrics extension. Supports MetroLyrics, Sonic Hits, Lyrics Mode
 
 Installation
 -------------
-Download installer for Windows: [install](https://github.com/Smile4ever/VLC-Lyrics-Finder/raw/master/windows-releases/lyricsfinder-0.3.4.1.exe)
+Download installer for Windows: [install](https://github.com/Smile4ever/VLC-Lyrics-Finder/raw/master/windows-releases/lyricsfinder-0.3.5.exe)
 
 Installation steps for Linux and OS X:
 
@@ -57,7 +57,7 @@ Sources
 -------
 Lyrics Finder gets its lyrics from several websites. If Lyrics Finder is unable to find lyrics for your song, verify that you comply with the Intelligent Guessing Format (see above) or make sure that you have proper metadata tags attached to your files.
 
-With so many sites supported, it's still imaginable that the lyrics for a specific song are not yet available. You can [add them yourself using LyricsMode](http://www.lyricsmode.com/lyrics_submit.php).
+With so many sites supported, it's still imaginable that the lyrics for a specific song are not yet available. You can add them yourself [using MetroLyrics](http://www.metrolyrics.com/add.html) or [using LyricsMode](http://www.lyricsmode.com/lyrics_submit.php).
 
 Translation
 -------

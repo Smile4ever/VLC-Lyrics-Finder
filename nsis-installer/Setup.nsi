@@ -1,7 +1,7 @@
 ;Product Info
 Name "VLC Lyrics Finder"
 !define PRODUCT "VLC Lyrics Finder"
-!define VERSION "0.3.4.1"
+!define VERSION "0.3.5"
 !include "MUI.nsh"
 !include x64.nsh
 
@@ -23,8 +23,6 @@ Var PROG3264
 ;--------------------------------
 ; Welcome page
 !insertmacro MUI_PAGE_WELCOME
-;License file
-;!insertmacro MUI_PAGE_LICENSE "EULA.txt"
 ; Instfiles page
 !insertmacro MUI_PAGE_INSTFILES
 ; Finish page
@@ -35,16 +33,16 @@ Var PROG3264
 
 ;Language
 !insertmacro MUI_LANGUAGE "English"
- 
+
 Section "section_1" section_1
 	
-	${If} ${RunningX64}
-	   SetRegView 64
-	   StrCpy $PROG3264 "$PROGRAMFILES64"
-	${Else}
-	   StrCpy $PROG3264 "$PROGRAMFILES32"
-	${EndIf}
-	StrCpy $INSTDIR "$PROG3264\VideoLAN\VLC\lua\extensions\"
+  StrCpy $PROG3264 "$PROGRAMFILES32"
+  ${If} ${RunningX64}
+	  ${If} ${FileExists} "$PROGRAMFILES64\VideoLAN\VLC\*"
+		StrCpy $PROG3264 "$PROGRAMFILES64"
+	  ${EndIf}
+  ${EndIf}
+  StrCpy $INSTDIR "$PROG3264\VideoLAN\VLC\lua\extensions\"
 
   SetOverwrite try
   SetOutPath "$INSTDIR"
@@ -58,13 +56,13 @@ Section Uninstaller
   !define ARP "Software\Microsoft\Windows\CurrentVersion\Uninstall\Lyrics Finder"
   !include "FileFunc.nsh"
  
- 	${If} ${RunningX64}
-	   SetRegView 64
-	   StrCpy $PROG3264 "$PROGRAMFILES64"
-	${Else}
-	   StrCpy $PROG3264 "$PROGRAMFILES32"
-	${EndIf}
-	StrCpy $INSTDIR "$PROG3264\VideoLAN\VLC\lua\extensions\"
+  StrCpy $PROG3264 "$PROGRAMFILES32"
+  ${If} ${RunningX64}
+	  ${If} ${FileExists} "$PROGRAMFILES64\VideoLAN\VLC\*"
+		StrCpy $PROG3264 "$PROGRAMFILES64"
+	  ${EndIf}
+  ${EndIf}
+  StrCpy $INSTDIR "$PROG3264\VideoLAN\VLC\lua\extensions\"
   
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Lyrics Finder" "DisplayName" "${PRODUCT} ${VERSION}"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Lyrics Finder" "DisplayVersion" "${VERSION}"
@@ -93,13 +91,11 @@ Function un.onInit
 FunctionEnd
  
 Section "Uninstall"
- 
-    
+  StrCpy $PROG3264 "$PROGRAMFILES32"
   ${If} ${RunningX64}
-	   SetRegView 64
-	   StrCpy $PROG3264 "$PROGRAMFILES64"
-  ${Else}
-	   StrCpy $PROG3264 "$PROGRAMFILES32"
+	  ${If} ${FileExists} "$PROGRAMFILES64\VideoLAN\VLC\*"
+		StrCpy $PROG3264 "$PROGRAMFILES64"
+	  ${EndIf}
   ${EndIf}
   StrCpy $INSTDIR "$PROG3264\VideoLAN\VLC\lua\extensions\"
   
@@ -115,11 +111,13 @@ SectionEnd
 Function .onInstSuccess
    ;CreateShortCut "$DESKTOP\desktop.lnk" "$PROGRAMFILES\VideoLAN\VLC\vlc.exe" "" "$PROGRAMFILES\VideoLAN\VLC\vlc.exe"
    
-   ${If} ${RunningX64}
-	 ExecShell open "$PROG3264\VideoLAN\VLC\vlc.exe"
-   ${Else}
-     ExecShell open "$PROG3264\VideoLAN\VLC\vlc.exe"
-   ${EndIf}
+  StrCpy $PROG3264 "$PROGRAMFILES32"
+  ${If} ${RunningX64}
+	  ${If} ${FileExists} "$PROGRAMFILES64\VideoLAN\VLC\*"
+		StrCpy $PROG3264 "$PROGRAMFILES64"
+	  ${EndIf}
+  ${EndIf}
+  ExecShell open "$PROG3264\VideoLAN\VLC\vlc.exe"
 FunctionEnd
 
 ;eof
