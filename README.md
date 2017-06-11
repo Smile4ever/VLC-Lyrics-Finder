@@ -8,6 +8,7 @@ VLC media player lyrics extension. Supports MetroLyrics, Sonic Hits, Lyrics Mode
 Installation
 -------------
 Download installer for Windows: [install](https://github.com/Smile4ever/VLC-Lyrics-Finder/raw/master/windows-releases/lyricsfinder-0.3.5.exe)
+Package for Arch Linux: [vlc-extension-lyricsfinder-git](https://aur.archlinux.org/packages/vlc-extension-lyricsfinder-git)
 
 Installation steps for Linux and OS X:
 
