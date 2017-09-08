@@ -1,0 +1,18 @@
+﻿<dialogtitle_normal>Текстове</dialogtitle_normal>
+<dialogtitle_notfound>Не е намерен</dialogtitle_notfound>
+<dialogtitle_lyricsof>Текст на</dialogtitle_lyricsof>
+<dialogtitle_performedby>от</dialogtitle_lyricsof>
+<button_getlyrics>Получаване на текст</button_getlyrics>
+<button_refresh>Опресняване</button_refresh>
+<button_switch>Превключване</button_switch>
+<button_close>Затваряне</button_close>
+<button_google>Търсене с Google</button_google>
+<button_update>Получаване на обновления</button_update>
+<label_title>Заглавие:</label_title>
+<label_artist>Изпълнител:</label_artist>
+<label_source>Източник:</label_source>
+<message_newsong>Заредена е нова песен. За да заредите текста, щракнете върху 'Получаване на текст'.</message_newsong>
+<message_loading>Зареждане...</message_loading>
+<message_incorrect>Неправилен изпълнтел или заглавие.</message_incorrect>
+<message_notfound>Не е намерен текст.</message_notfound>
+<message_nosong>Не е заредена песен.</message_nosong>
