@@ -1,0 +1,18 @@
+<dialogtitle_normal>Слова пісні</dialogtitle_normal>
+<dialogtitle_notfound>Не знайдено</dialogtitle_notfound>
+<dialogtitle_lyricsof>Слова пісні</dialogtitle_lyricsof>
+<dialogtitle_performedby>написані</dialogtitle_lyricsof>
+<button_getlyrics>Шукати тексти пісень</button_getlyrics>
+<button_refresh>Відновити</button_refresh>
+<button_switch>Змінити місцями</button_switch>
+<button_close>Закрити</button_close>
+<button_google>Пошук за допомогою Google</button_google>
+<button_update>Шукати оновлення</button_update>
+<label_title>Назва:</label_title>
+<label_artist>Виконавець:</label_artist>
+<label_source>Знайдено в:</label_source>
+<message_newsong>Нова пісня завантажена. Щоб отримати текст, натисніть кнопку "Шукати тексти пісень."</message_newsong>
+<message_loading>Завантажується...</message_loading>
+<message_incorrect>Некоректний виконавець або назва.</message_incorrect>
+<message_notfound>Текст не знайден</message_notfound>
+<message_nosong>пісня не завантажена</message_nosong>

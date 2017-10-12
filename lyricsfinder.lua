@@ -226,7 +226,7 @@ local lang_os_to_iso = {
 function descriptor()
 	return {
 				title = "Lyrics Finder";
-				version = "0.3.5";
+				version = "0.3.6";
 				author = "rsyh93, alexxxnf, Smile4ever";
 				url = 'https://github.com/Smile4ever/VLC-Lyrics-Finder';
 				description = "<center><b>Lyrics Finder</b></center>"
@@ -567,8 +567,6 @@ function get_lyrics(title_x, artist_x)
 	
 	if is_lyric_page(lyric_string) == false then		
 		local metrourl = "http://www.metrolyrics.com/"..metrotitle.."-lyrics-"..artist_metro..".html"
-		--lyric_string = fetch_lyrics(metrourl)
-		
 		local artist_and_location = string.find(artist_metro, "-and-")
 
 		if artist_and_location then
@@ -822,6 +820,10 @@ function get_lyrics(title_x, artist_x)
 	end
 end
 
+function trim6(s)
+  return s:match'^()%s*$' and '' or s:match'^%s*(.*%S)'
+end
+
 function fetch_lyrics(url)
 	local metro_pos = url:find('metrolyrics')
 	local lyricsmania = url:find('lyricsmania')
@@ -883,7 +885,7 @@ function fetch_lyrics(url)
 				data:sub(endWidgetPhotos)
 
 		local lyricsEnd = string.find(data, "writers", a) - 10
-		return data:sub(a + 13, lyricsEnd)
+		return trim6(data:sub(a + 13, lyricsEnd))
 	end
 	if lyricsmania then
 		local strong_text = "</strong>"
@@ -1080,6 +1082,16 @@ function is_lyric_page(lyric_string)
 		return false
 	end
 	
+	if lyric_string:find("Unfortunately, we aren't authorized to display these lyrics") then
+		--metrolyrics
+		return false
+	end
+
+	if lyric_string:find("No lyrics text found for this track.") then
+		--sonic hits
+		return false
+	end
+
 	if lyric_string:find("No lyrics found for this song") then
 		if debug_enabled then
 			vlc.msg.dbg("[Lyrics Finder] Data dump: " .. lyric_string)

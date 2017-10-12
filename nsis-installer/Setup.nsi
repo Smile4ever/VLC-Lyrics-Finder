@@ -1,7 +1,7 @@
 ;Product Info
 Name "VLC Lyrics Finder"
 !define PRODUCT "VLC Lyrics Finder"
-!define VERSION "0.3.5"
+!define VERSION "0.3.6"
 !include "MUI.nsh"
 !include x64.nsh
 
