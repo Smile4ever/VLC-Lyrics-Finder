@@ -866,40 +866,24 @@ function fetch_lyrics(url)
 	
 	if metro_pos then
 		--MetroLyrics
-		local a = string.find(data, 'lyrics%-body%-text', 1)
+		local a = string.find(data, 'lyrics%-body', 1)
 		
 		if a == nil then
 			return ""
 		end
 		
-		local midsong = string.find(data, 'mid%-song%-discussion')
-		
-		if midsong == nil then
-			-- do nothing
-		else
-			--<div id=" has length 9
-			midsong = midsong - 9
+		-- if any of these can be missing from data, additional checks must be made
+		local widgetRelated = string.find(data, '<!%-%-WIDGET %- RELATED%-%->', a)
+		local endWidgetRelated = string.find(data, '<!%-%-END WIDGET %- RELATED%-%->', a)
+		local widgetPhotos = string.find(data, '<!%-%-WIDGET %- PHOTOS%-%->', a)
+		local endWidgetPhotos = string.find(data, '<!%-%-END WIDGET %- PHOTOS%-%->', a)
 
-			local seeall = string.find(data, "See all")
-			local midsongend = string.find(data, "div", seeall) + 10 --was +25
-			--or verse -10
-			data = data:sub(0, midsong) .. data:sub(midsongend)
-		end
+		data =	data:sub(0, widgetRelated) ..
+				data:sub(endWidgetRelated, widgetPhotos) ..
+				data:sub(endWidgetPhotos)
 
-		local endofstring = 'js%-lyric%-text' --length 13
-		local position = string.find(data, endofstring, a)
-
-		if position == nil then
-			return ""
-		end
-		position = position + 15;
-		
-		local b = string.find(data, "div", a)
-		if b == nil then
-			return ""
-		end
-		
-		return data:sub(position,b)
+		local lyricsEnd = string.find(data, "writers", a) - 10
+		return data:sub(a + 13, lyricsEnd)
 	end
 	if lyricsmania then
 		local strong_text = "</strong>"
