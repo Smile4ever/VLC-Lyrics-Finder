@@ -1,0 +1,21 @@
+<dialogtitle_normal>Literoj</dialogtitle_normal>
+<dialogtitle_notfound>Ne Trovita</dialogtitle_notfound>
+<dialogtitle_lyricsof>Literoj de</dialogtitle_lyricsof>
+<dialogtitle_performedby>de</dialogtitle_performedby>
+<button_getlyrics>Akiru Literojn</button_getlyrics>
+<button_refresh>Refreŝigu</button_refresh>
+<button_switch>Ŝaltu</button_switch>
+<button_close>Fermu</button_close>
+<button_google>Serĉu uzanta Google</button_google>
+<button_update>Akiru ĝisdatigojn</button_update>
+<label_title>Titolo:</label_title>
+<label_artist>Artisto:</label_artist>
+<label_source>Fonto:</label_source>
+<message_newsong>Nova kanto estis aldonita. Por ricevi la literojn, klaku Akiru Literojn.</message_newsong>
+<message_loading>Ŝarĝas..</message_loading>
+<message_incorrect>Artisto aŭ titolo estas malĝusta.</message_incorrect>
+<message_notfound>Literoj estas ne trovita.</message_notfound>
+<message_nosong>Neniu kanto ŝarĝita.</message_nosong>
+<message_savelyrics>Savi Literoj</message_savelyrics>
+
+<!-- Translated by Roman Panchenko -->

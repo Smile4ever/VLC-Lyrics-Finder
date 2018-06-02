@@ -1,7 +1,7 @@
 <dialogtitle_normal>Слова пісні</dialogtitle_normal>
 <dialogtitle_notfound>Не знайдено</dialogtitle_notfound>
 <dialogtitle_lyricsof>Слова пісні</dialogtitle_lyricsof>
-<dialogtitle_performedby>написані</dialogtitle_lyricsof>
+<dialogtitle_performedby>написані</dialogtitle_performedby>
 <button_getlyrics>Шукати тексти пісень</button_getlyrics>
 <button_refresh>Відновити</button_refresh>
 <button_switch>Змінити місцями</button_switch>
@@ -16,3 +16,4 @@
 <message_incorrect>Некоректний виконавець або назва.</message_incorrect>
 <message_notfound>Текст не знайден</message_notfound>
 <message_nosong>пісня не завантажена</message_nosong>
+<message_savelyrics>Зберегти текст</message_savelyrics>

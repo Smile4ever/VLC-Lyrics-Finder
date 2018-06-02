@@ -1,7 +1,7 @@
 <dialogtitle_normal>Текст песни</dialogtitle_normal>
 <dialogtitle_notfound>Текст не найден</dialogtitle_notfound>
 <dialogtitle_lyricsof>Текст песни</dialogtitle_lyricsof>
-<dialogtitle_performedby>-</dialogtitle_lyricsof>
+<dialogtitle_performedby>-</dialogtitle_performedby>
 <button_getlyrics>Загрузить</button_getlyrics>
 <button_refresh>Обновить</button_refresh>
 <button_switch>Поменять местами</button_switch>
@@ -16,5 +16,6 @@
 <message_incorrect>Некорректное название или исполнитель.</message_incorrect>
 <message_notfound>Текст песни не найден.</message_notfound>
 <message_nosong>песня не загружается</message_nosong>
+<message_savelyrics>Сохранить текст</message_savelyrics>
 
 <!-- Translated by Aleksey Maydokin -->

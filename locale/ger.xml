@@ -1,7 +1,7 @@
 <dialogtitle_normal>Liedtext</dialogtitle_normal>
 <dialogtitle_notfound>Nicht gefunden</dialogtitle_notfound>
 <dialogtitle_lyricsof>Liedtext von</dialogtitle_lyricsof>
-<dialogtitle_performedby>von</dialogtitle_lyricsof>
+<dialogtitle_performedby>von</dialogtitle_performedby>
 <button_getlyrics>Liedtext anzeigen</button_getlyrics>
 <button_refresh>Neu laden</button_refresh>
 <button_switch>Wechseln</button_switch>
@@ -16,5 +16,6 @@
 <message_incorrect>Falscher Künstler oder Titel.</message_incorrect>
 <message_notfound>Liedtext nicht gefunden.</message_notfound>
 <message_nosong>Kein Lied geladen.</message_nosong>
+<message_savelyrics>Liedtext speichern</message_savelyrics>
 
 <!-- Translated by Leon Liesener -->

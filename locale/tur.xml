@@ -1,7 +1,7 @@
 <dialogtitle_normal>Sözler</dialogtitle_normal>
 <dialogtitle_notfound>Bulunamadı</dialogtitle_notfound>
 <dialogtitle_lyricsof>Sözleri</dialogtitle_lyricsof>
-<dialogtitle_performedby>tarafından</dialogtitle_lyricsof>
+<dialogtitle_performedby>tarafından</dialogtitle_performedby>
 <button_getlyrics>Sözleri Alın</button_getlyrics>
 <button_refresh>Yenileyin</button_refresh>
 <button_switch>Geçin</button_switch>
@@ -15,4 +15,7 @@
 <message_loading>Yükleniyor...</message_loading>
 <message_incorrect>Geçersiz sanatçı ya da başlık.</message_incorrect>
 <message_notfound>Söz bulunamadı.</message_notfound>
-Translated by OzancanKaratas96
+<message_nosong>Hiçbir şarkı yüklü değil.</message_nosong>
+<message_savelyrics>Şarkı Sözlerini Kaydet</message_savelyrics>
+
+<!-- Translated by OzancanKaratas96 -->

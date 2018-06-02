@@ -1,7 +1,7 @@
 <dialogtitle_normal>		</dialogtitle_normal>
 <dialogtitle_notfound>		</dialogtitle_notfound>
 <dialogtitle_lyricsof>		</dialogtitle_lyricsof>
-<dialogtitle_performedby>		</dialogtitle_lyricsof>
+<dialogtitle_performedby>		</dialogtitle_performedby>
 <button_getlyrics>		</button_getlyrics>
 <button_refresh>		</button_refresh>
 <button_switch>		</button_switch>
@@ -16,5 +16,6 @@
 <message_incorrect>		</message_incorrect>
 <message_notfound>		</message_notfound>
 <message_nosong>		</message_nosong>
+<message_savelyrics>		</message_savelyrics>
 
-Translated by First name Last name
+<!-- Translated by First name Last name -->

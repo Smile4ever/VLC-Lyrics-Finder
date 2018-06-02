@@ -1,3 +1,17 @@
+0.3.7
+=====
+* Automatic update of lyrics on song change, possible since bug 14786 was fixed: https://trac.videolan.org/vlc/ticket/14786
+* Save lyrics to TXT file, fixes #9
+* Drop "Refresh" functionality
+* Esperanto translation
+* Fix numerous translations
+* Update template
+* Update existing translations
+* README: add explanation about Save Lyrics
+* Increase VLC version requirement to 3
+* Linux and Windows support for saving lyrics, other variants of Unix such as macOS untested
+* Update Italian translation
+
 0.3.6
 =====
 * Fix support for MetroLyrics

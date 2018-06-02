@@ -16,3 +16,4 @@ Loading..
 Incorrect artist or title.
 Lyrics not found.
 No song loaded.
+Save Lyrics

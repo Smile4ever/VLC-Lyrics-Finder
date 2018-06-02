@@ -54,7 +54,6 @@
 --------- MOST SPACES = title
 -- FIXME: Title (extratitle) for Metro Lyrics
 -- FIXME: In another life, I would like to add acoustic fingerprinting
--- FIXME: update lyrics automatically on song change (without crashes)
 
 dlg = nil
 title = nil
@@ -225,18 +224,18 @@ local lang_os_to_iso = {
 -- VLC Extension Descriptor
 function descriptor()
 	return {
-				title = "Lyrics Finder";
-				version = "0.3.6";
-				author = "rsyh93, alexxxnf, Smile4ever";
-				url = 'https://github.com/Smile4ever/VLC-Lyrics-Finder';
-				description = "<center><b>Lyrics Finder</b></center>"
-						   .. "<br /><b>Gets the lyrics for your favorite songs</b>"
-						   .. "<br /><b>(Based on the script made by Jean-Philippe Andre)</b>"
-						   .. "<br /><b>(Modified by Aleksey Maydokin)</b>"
-						   .. "<br /><b>(Modified and translated by Geoffrey De Belie</b>";
-				shortdesc = "Lyrics Finder";
-				capabilities = { "input-listener"; "meta-listener"; "playing-listener" }
-			}
+		title = "Lyrics Finder";
+		version = "0.3.7";
+		author = "rsyh93, alexxxnf, Smile4ever";
+		url = 'https://github.com/Smile4ever/VLC-Lyrics-Finder';
+		description = "<center><b>Lyrics Finder</b></center>"
+				   .. "<br /><b>Gets the lyrics for your favorite songs</b>"
+				   .. "<br /><b>(Based on the script made by Jean-Philippe Andre)</b>"
+				   .. "<br /><b>(Modified by Aleksey Maydokin)</b>"
+				   .. "<br /><b>(Modified and translated by Geoffrey De Belie</b>";
+		shortdesc = "Lyrics Finder";
+		capabilities = { "input-listener"; "meta-listener"; "playing-listener" }
+	}
 end
 
 -- Function triggered when the extension is activated
@@ -247,6 +246,7 @@ function activate()
 	if dlg then
 		dlg:show()
 	end
+	
 	show_dialog()
 	return true
 end
@@ -272,11 +272,9 @@ function show_dialog()
 
 	if langcode then
 		--GPL code from VLsub (adapted)
-		if is_window_path(vlc.config.datadir()) then
-			--Windows
+		if get_platform() == "windows" then
 			slash = "\\"
 		else
-			--Unix
 			slash = "/"
 		end
 		
@@ -314,7 +312,8 @@ function show_dialog()
 	dlg:add_label(translation["label_artist"], 1, 2, 1)
 	artist = dlg:add_text_input(get_artist(),  2, 2, 3)
 
-	dlg:add_button(translation["button_refresh"], update_metas, 5, 1, 1)
+	dlg:add_button("Save lyrics", click_save, 5, 1, 1)
+	--dlg:add_button(translation["button_refresh"], update_metas, 5, 1, 1)
 	--dlg:add_button("Lyrics Connect", lyricsconnect, 5, 2, 1)
 	dlg:add_button(translation["button_switch"], click_switch, 5, 2, 1)
 
@@ -471,6 +470,48 @@ function getenv_lang()
 	end
 end
 
+function click_save()
+	local path = ""
+	local platform = get_platform()
+	local filename = ""
+	local lyricsText = trim(cleanHTML(lyric:get_text()))
+
+	if platform == "unix" then
+		path = "/tmp/"
+	end
+	
+	if platform == "windows" then
+		path = "C:\\Temp\\"
+	end
+	
+	filename = path .. "Lyrics " .. artist:get_text() .. " - " .. title:get_text() .. ".txt"
+	
+	vlc.msg.dbg("[Lyrics Finder] Platform is " .. platform);
+	vlc.msg.dbg("[Lyrics Finder] Filename is " .. filename);
+	vlc.msg.dbg("[Lyrics Finder] Text is " .. lyricsText);
+	
+	local lines = magiclines(lyricsText)
+	vlc.msg.dbg("[Lyrics Finder] Text is " .. lyricsText);
+	local firstLine = true
+	
+	for line in magiclines(lyricsText) do
+		if firstLine == false then
+			os.execute(string.format('echo "%s" >> "' .. filename .. '"', line))
+		else
+			os.execute(string.format('echo "%s" > "' .. filename .. '"', line))
+			firstLine = false
+		end
+	end
+		
+	if platform == "unix" then
+		os.execute(string.format('xdg-open "%s"', filename))
+	end
+	
+	if platform == "windows" then
+		os.execute(string.format('start "" "%s"', filename))
+	end
+end
+
 function click_switch()
 	local title_local = title:get_text()
 	title:set_text(artist:get_text())
@@ -502,7 +543,6 @@ function download_update()
 	--local installed_version = descriptor()["version"]
 	
 	open_url("https://github.com/Smile4ever/VLC-Lyrics-Finder")
-	
 end
 
 function lyricsconnect()
@@ -512,8 +552,8 @@ function lyricsconnect()
 		local artistc = get_artist(current_song)
 		local titlec = get_title(current_song)
 		
-		artist:set_text(artistc);
-		title:set_text(titlec);
+		artist:set_text(artistc)
+		title:set_text(titlec)
 		update_lyrics()
 	end
 end
@@ -1027,9 +1067,13 @@ function input_changed()
 				else
 					lyric:set_text(translation["message_newsong"])
 					dlg:set_title(translation["dialogtitle_normal"])
+					update_metas()
+					return true
 				end
 			end
 		else
+			dlg:set_title(translation["dialogtitle_normal"])
+			
 			--it's a different song
 			local item = vlc.item or vlc.input.item()
 			if not item then
@@ -1037,8 +1081,9 @@ function input_changed()
 				lyric:set_text(translation["message_nosong"])
 			else
 				lyric:set_text(translation["message_newsong"])
+				update_metas()
+				return true
 			end
-			dlg:set_title(translation["dialogtitle_normal"])
 		end
 	end
 	
@@ -1061,6 +1106,7 @@ end
 function meta_changed()
    -- triggered by available media input meta data?
    -- requires meta-listener
+   --update_metas()
 end
 
 function is_lyric_page(lyric_string)
@@ -1378,4 +1424,51 @@ end
 --GPL code from VLSub
 function is_window_path(path)
 	return string.match(path, "^(%a:\\).+$")
+end
+
+--Wrapper for platform detection
+function get_platform()
+	if is_window_path(vlc.config.datadir()) then
+		return "windows"
+	else
+		return "unix"
+	end
+end
+
+--https://stackoverflow.com/questions/19326368/iterate-over-lines-including-blank-lines
+function magiclines(s)
+	if s:sub(-1)~="\n" then s=s.."\n" end
+	return s:gmatch("(.-)\n")
+end
+
+--https://gist.github.com/HoraceBury/9001099
+function cleanHTML(html)
+	-- list of strings to replace (the order is important to avoid conflicts)
+	local cleaner = {
+		{ "&amp;", "&" }, -- decode ampersands
+		{ "&#151;", "-" }, -- em dash
+		{ "&#146;", "'" }, -- right single quote
+		{ "&#147;", "\"" }, -- left double quote
+		{ "&#148;", "\"" }, -- right double quote
+		{ "&#150;", "-" }, -- en dash
+		{ "&#160;", " " }, -- non-breaking space
+		{ "<br ?/?>", "\n" }, -- all <br> tags whether terminated or not (<br> <br/> <br />) become new lines
+		{ "</p>", "\n" }, -- ends of paragraphs become new lines
+		{ "<p ?/?>", "\n" }, -- begin of paragraphs become new lines
+		{ "(%b<>)", "" }, -- all other html elements are completely removed (must be done last)
+		{ "(<)", "" }, -- all other html elements are completely removed (must be done last)
+		{ "\r", "\n" }, -- return carriage become new lines
+		{ "[\n\n]+", "\n" }, -- reduce all multiple new lines with a single new line
+		{ "^\n*", "" }, -- trim new lines from the start...
+		{ "\n*$", "" }, -- ... and end
+		{ "\n", "\r\n" }, -- new lines become \r\n 
+	}
+
+	-- clean html from the string
+	for i=1, #cleaner do
+		local cleans = cleaner[i]
+		html = string.gsub( html, cleans[1], cleans[2] )
+	end
+
+	return html
 end

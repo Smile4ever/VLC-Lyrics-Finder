@@ -1,7 +1,7 @@
 <dialogtitle_normal>Lyrics</dialogtitle_normal>
 <dialogtitle_notfound>Not Found</dialogtitle_notfound>
 <dialogtitle_lyricsof>Lyrics of</dialogtitle_lyricsof>
-<dialogtitle_performedby>by</dialogtitle_lyricsof>
+<dialogtitle_performedby>by</dialogtitle_performedby>
 <button_getlyrics>Get Lyrics</button_getlyrics>
 <button_refresh>Refresh</button_refresh>
 <button_switch>Switch</button_switch>
@@ -16,3 +16,4 @@
 <message_incorrect>Incorrect artist or title.</message_incorrect>
 <message_notfound>Lyrics not found.</message_notfound>
 <message_nosong>No song loaded.</message_nosong>
+<message_savelyrics>Save Lyrics</message_savelyrics>

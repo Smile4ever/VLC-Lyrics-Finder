@@ -1,7 +1,7 @@
 ﻿<dialogtitle_normal>Текстове</dialogtitle_normal>
 <dialogtitle_notfound>Не е намерен</dialogtitle_notfound>
 <dialogtitle_lyricsof>Текст на</dialogtitle_lyricsof>
-<dialogtitle_performedby>от</dialogtitle_lyricsof>
+<dialogtitle_performedby>от</dialogtitle_performedby>
 <button_getlyrics>Получаване на текст</button_getlyrics>
 <button_refresh>Опресняване</button_refresh>
 <button_switch>Превключване</button_switch>
@@ -16,3 +16,4 @@
 <message_incorrect>Неправилен изпълнтел или заглавие.</message_incorrect>
 <message_notfound>Не е намерен текст.</message_notfound>
 <message_nosong>Не е заредена песен.</message_nosong>
+<message_savelyrics>Запазване на текста</message_savelyrics>

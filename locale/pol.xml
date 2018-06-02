@@ -1,7 +1,7 @@
 <dialogtitle_normal>Napisy</dialogtitle_normal>
 <dialogtitle_notfound>Nie znaleziono</dialogtitle_notfound>
 <dialogtitle_lyricsof>Napisy do</dialogtitle_lyricsof>
-<dialogtitle_performedby>od</dialogtitle_lyricsof>
+<dialogtitle_performedby>od</dialogtitle_performedby>
 <button_getlyrics>Zdobądź napisy</button_getlyrics>
 <button_refresh>Odśwież</button_refresh>
 <button_switch>Przełącz</button_switch>
@@ -16,5 +16,6 @@
 <message_incorrect>Niepoprawny artysta lub tytuł.</message_incorrect>
 <message_notfound>Nie znaleziono napisów.</message_notfound>
 <message_nosong>No piosenka załadowany.</message_nosong>
+<message_savelyrics>Zapisz napisy</message_savelyrics>
 
 <!-- Translated by Ola Kleniewska -->

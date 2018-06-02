@@ -1,7 +1,7 @@
 <dialogtitle_normal>Letra</dialogtitle_normal>
 <dialogtitle_notfound>No encontrado</dialogtitle_notfound>
 <dialogtitle_lyricsof>Letra de</dialogtitle_lyricsof>
-<dialogtitle_performedby>por</dialogtitle_lyricsof>
+<dialogtitle_performedby>por</dialogtitle_performedby>
 <button_getlyrics>Buscar letra</button_getlyrics>
 <button_refresh>Actualizar</button_refresh>
 <button_switch>Cambiar</button_switch>
@@ -16,5 +16,6 @@
 <message_incorrect>Artista o título incorrecto.</message_incorrect>
 <message_notfound>Letra no encontrada.</message_notfound>
 <message_nosong>Ninguna canción cargada.</message_nosong>
+<message_savelyrics>Guardar letra</message_savelyrics>
 
 <!-- Translated by Jennifer De Belie -->

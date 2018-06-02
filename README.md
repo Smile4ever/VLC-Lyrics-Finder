@@ -7,13 +7,13 @@ VLC Media Player lyrics extension. Supports MetroLyrics, Sonic Hits, Lyrics Mode
 
 Installation
 -------------
-Download installer for Windows: [install](https://github.com/Smile4ever/VLC-Lyrics-Finder/raw/master/windows-releases/lyricsfinder-0.3.6.exe)
+For version 0.3.7 and later, VLC 3.0 or higher is required. The last version compatible with VLC 2.x is 0.3.6.
 
-AUR package for Arch Linux: [vlc-extension-lyricsfinder-git](https://aur.archlinux.org/packages/vlc-extension-lyricsfinder-git)
+* Download installer for Windows: [install 0.3.7 for VLC 3](https://github.com/Smile4ever/VLC-Lyrics-Finder/raw/master/windows-releases/lyricsfinder-0.3.7.exe) or [install 0.3.6 for VLC 2](https://github.com/Smile4ever/VLC-Lyrics-Finder/raw/master/windows-releases/lyricsfinder-0.3.6.exe)
+* AUR package for Arch Linux: [vlc-extension-lyricsfinder-git](https://aur.archlinux.org/packages/vlc-extension-lyricsfinder-git)
+* Installation steps for Linux and macOS:
 
-Installation steps for Linux and OS X:
-
-1. Download [lyricsfinder.lua](https://raw.githubusercontent.com/Smile4ever/VLC-Lyrics-Finder/master/lyricsfinder.lua) (Use **File -> Save as** if necessary).
+1. Download [lyricsfinder.lua 0.3.7 for VLC 3](https://raw.githubusercontent.com/Smile4ever/VLC-Lyrics-Finder/master/lyricsfinder.lua) or [lyricsfinder 0.3.6 for VLC 2](https://raw.githubusercontent.com/Smile4ever/VLC-Lyrics-Finder/d941cd0f9a29b042401b4cb4680f008c0e0dadb0/lyricsfinder.lua) (Use **File -> Save as** if necessary).
 2. Move the file lyricsfinder.lua to **lua/extensions** inside your VLC folder. For example, **C:\Program Files\VideoLAN\VLC\lua\extensions\lyricsfinder.lua**
 3. To install the language files, put them inside your VLC folder in the subdirectory **lua/extensions/lyricsfinder/locale**. For example, **C:\Program Files\VideoLAN\VLC\lua\extensions\lyricsfinder\locale**
 3. Restart VLC or open **Tools -> Plugins and extensions** and hit **reload extensions**.
@@ -34,7 +34,7 @@ Usage
 Other buttons:
 
 * Search with Google: open a new browser tab to look for lyrics
-* Refresh: force refresh of metadata and look up the lyrics
+* Save lyrics: save lyrics to a TXT file in /tmp or C:\Temp
 * Switch: artist and title wrongly guessed? Click this button to switch them. The artist text becomes the title text, the title text becomes the artist text.
 
 When you open Lyrics Finder, it will try to make an attempt to get the lyrics. This means opening Lyrics Finder is enough if you want to see the lyrics of only one song.
@@ -47,7 +47,6 @@ Since version 0.3.0, this script supports intelligent guessing. This means that 
 * Artist - Title -> Steve Allen - Letter From My Heart
 * Artist - Title (anything): the information between parenthesis is discarded
 * Artist-Title: also works without spaces before and after the hyphen
-
 
 Wrong file names:
 * Title - Artist

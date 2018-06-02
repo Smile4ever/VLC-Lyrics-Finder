@@ -1,7 +1,7 @@
 <dialogtitle_normal>Lirieke</dialogtitle_normal>
 <dialogtitle_notfound>Nie gevind nie</dialogtitle_notfound>
 <dialogtitle_lyricsof>Lirieke van</dialogtitle_lyricsof>
-<dialogtitle_performedby>by</dialogtitle_lyricsof>
+<dialogtitle_performedby>by</dialogtitle_performedby>
 <button_getlyrics>Kry lirieke</button_getlyrics>
 <button_refresh>Verfris</button_refresh>
 <button_switch>Ruil om</button_switch>
@@ -16,5 +16,6 @@
 <message_incorrect>Verkeerde kunstenaar of titel.</message_incorrect>
 <message_notfound>Lirieke nie gevind nie.</message_notfound>
 <message_nosong>Geen lied gelaai nie.</message_nosong>
+<message_savelyrics>Bewaar lirieke</message_savelyrics>
 
 <!-- Translated by Miles Sharpe -->

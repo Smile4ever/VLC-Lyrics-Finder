@@ -1,7 +1,7 @@
 <dialogtitle_normal>Songtekst</dialogtitle_normal>
 <dialogtitle_notfound>Niet gevonden</dialogtitle_notfound>
 <dialogtitle_lyricsof>Songtekst van</dialogtitle_lyricsof>
-<dialogtitle_performedby>door</dialogtitle_lyricsof>
+<dialogtitle_performedby>door</dialogtitle_performedby>
 <button_getlyrics>Songtekst opzoeken</button_getlyrics>
 <button_refresh>Verversen</button_refresh>
 <button_switch>Omwisselen</button_switch>
@@ -16,5 +16,6 @@
 <message_incorrect>Incorrecte artiest of titel.</message_incorrect>
 <message_notfound>Songtekst niet gevonden.</message_notfound>
 <message_nosong>Geen liedje geladen.</message_nosong>
+<message_savelyrics>Songtekst bewaren</message_savelyrics>
 
 <!-- Translated by Geoffrey De Belie -->
