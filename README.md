@@ -21,7 +21,7 @@ For version 0.3.7 and later, VLC 3.0 or higher is required. The last version com
 VLC folder path:
 
 * Windows: **C:\Program Files\VideoLAN\VLC\lua\extensions\**
-* Mac OS X: **~/Library/Application\ Support/org.videolan.vlc/lua/extensions/**
+* macOS: **~/Library/Application\ Support/org.videolan.vlc/lua/extensions/**
 * Linux user path: **/home/$USER/.local/share/vlc/lua/extensions**
 * Linux system path: **/usr/share/vlc/lua/extensions**
 
@@ -37,7 +37,7 @@ Other buttons:
 * Save lyrics: save lyrics to a TXT file in /tmp or C:\Temp
 * Switch: artist and title wrongly guessed? Click this button to switch them. The artist text becomes the title text, the title text becomes the artist text.
 
-When you open Lyrics Finder, it will try to make an attempt to get the lyrics. This means opening Lyrics Finder is enough if you want to see the lyrics of only one song.
+When you open Lyrics Finder, an attempt will be made to get the lyrics of the song. When the song changes, starting from 0.3.7, Lyrics Finder will attempt to find lyrics for the current song.
 
 Intelligent guessing
 --------------------
