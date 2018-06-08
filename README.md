@@ -10,7 +10,6 @@ Installation
 For version 0.3.7 and later, VLC 3.0 or higher is required. The last version compatible with VLC 2.x is 0.3.6.
 
 * Download installer for Windows: [install 0.3.7 for VLC 3](https://github.com/Smile4ever/VLC-Lyrics-Finder/raw/master/windows-releases/lyricsfinder-0.3.7.exe) or [install 0.3.6 for VLC 2](https://github.com/Smile4ever/VLC-Lyrics-Finder/raw/master/windows-releases/lyricsfinder-0.3.6.exe)
-* AUR package for Arch Linux: [vlc-extension-lyricsfinder-git](https://aur.archlinux.org/packages/vlc-extension-lyricsfinder-git)
 * Installation steps for Linux and macOS:
 
 1. Download [lyricsfinder.lua 0.3.7 for VLC 3](https://raw.githubusercontent.com/Smile4ever/VLC-Lyrics-Finder/master/lyricsfinder.lua) or [lyricsfinder 0.3.6 for VLC 2](https://raw.githubusercontent.com/Smile4ever/VLC-Lyrics-Finder/d941cd0f9a29b042401b4cb4680f008c0e0dadb0/lyricsfinder.lua) (Use **File -> Save as** if necessary).
