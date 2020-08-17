@@ -80,7 +80,9 @@ translation = {
 	message_newsong = 'New song loaded. To get the lyrics, click Get Lyrics.',
 	message_loading = "Loading..",
 	message_incorrect = 'Incorrect artist or title.',
-	message_notfound = 'Lyrics not found.'
+	message_notfound = 'Lyrics not found.',
+	message_nosong = 'No song loaded.',
+	message_savelyrics = 'Save Lyrics'
 }
 
 languages = {
@@ -312,7 +314,7 @@ function show_dialog()
 	dlg:add_label(translation["label_artist"], 1, 2, 1)
 	artist = dlg:add_text_input(get_artist(),  2, 2, 3)
 
-	dlg:add_button("Save lyrics", click_save, 5, 1, 1)
+	dlg:add_button(translation["message_savelyrics"], click_save, 5, 1, 1)
 	--dlg:add_button(translation["button_refresh"], update_metas, 5, 1, 1)
 	--dlg:add_button("Lyrics Connect", lyricsconnect, 5, 2, 1)
 	dlg:add_button(translation["button_switch"], click_switch, 5, 2, 1)
