@@ -483,7 +483,7 @@ function click_save()
 	end
 	
 	if platform == "windows" then
-		path = "C:\\Temp\\"
+		path = "C:\\Windows\\Temp\\"
 	end
 	
 	filename = path .. "Lyrics " .. artist:get_text() .. " - " .. title:get_text() .. ".txt"
